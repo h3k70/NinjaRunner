@@ -92,6 +92,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "0ef11e8f-1f65-4cf8-908a-3db87b4ac11b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6ef1c5de-a257-43c8-9e55-b755154f5c8a",
+                    "path": "<Touchscreen>/primaryTouch/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Phone",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "940934d5-c073-4dde-986e-34755be21bfa",
+                    "path": "<Touchscreen>/delta/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Phone",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "2f55a11d-2592-4a37-9c53-599b3644799e",
                     "path": "<Mouse>/leftButton",
@@ -109,6 +142,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48aea0d4-760e-4140-a992-b56ac77c3e36",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Phone",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false

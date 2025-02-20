@@ -8,7 +8,7 @@ public class Build : MonoBehaviour
 
     [SerializeField] private Build _nextBuild;
 
-    public Build NextBuild { get => _nextBuild; set => _nextBuild = value; }
+    public virtual Build NextBuild { get => _nextBuild; set => _nextBuild = value; }
 
-    public SplineContainer[] SplineContainers => _splineContainers;
+    public virtual SplineContainer[] SplineContainers => _splineContainers;
 }
