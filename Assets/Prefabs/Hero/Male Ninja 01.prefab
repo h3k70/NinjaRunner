@@ -1069,10 +1069,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5138656007007003402}
-  - component: {fileID: 5649894442531636388}
-  - component: {fileID: 4895433838700927658}
   - component: {fileID: 8239258778623564668}
   - component: {fileID: 3064637510654241557}
+  - component: {fileID: 5649894442531636388}
+  - component: {fileID: 4895433838700927658}
   - component: {fileID: 3086832923002367734}
   m_Layer: 0
   m_Name: Male Ninja 01
@@ -1101,6 +1101,41 @@ Transform:
   - {fileID: 2984740229055798120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8239258778623564668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6617662002583864004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4979ca3778346984a8faf0ac14e86948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5649894442531636388}
+  _move: {fileID: 3064637510654241557}
+  _attackDelay: 0.7
+--- !u!114 &3064637510654241557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6617662002583864004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79718e7c5c91034db42c1d7cef483fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _heightOfBuildJump: 2
+  _splineAnimate: {fileID: 4895433838700927658}
+  _animator: {fileID: 5649894442531636388}
+  _trailEffects:
+  - {fileID: 3086832923002367734}
+  - {fileID: 753520230117525597}
+  _currentBuild: {fileID: 0}
 --- !u!95 &5649894442531636388
 Animator:
   serializedVersion: 7
@@ -1146,41 +1181,6 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
---- !u!114 &8239258778623564668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6617662002583864004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4979ca3778346984a8faf0ac14e86948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 5649894442531636388}
-  _move: {fileID: 3064637510654241557}
-  _attackDelay: 0.7
---- !u!114 &3064637510654241557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6617662002583864004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79718e7c5c91034db42c1d7cef483fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _heightOfBuildJump: 2
-  _splineAnimate: {fileID: 4895433838700927658}
-  _animator: {fileID: 5649894442531636388}
-  _trailEffects:
-  - {fileID: 3086832923002367734}
-  - {fileID: 753520230117525597}
-  _currentBuild: {fileID: 0}
 --- !u!114 &3086832923002367734
 MonoBehaviour:
   m_ObjectHideFlags: 0

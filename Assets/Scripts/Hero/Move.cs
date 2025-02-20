@@ -14,24 +14,28 @@ public class Move : MonoBehaviour
     [SerializeField] private TrailEffect[] _trailEffects;
 
     private float _jumpSpeed;
-    [SerializeField] private Build _currentBuild;
+    private Build _currentBuild;
     private int _currentSplineIndex;
-    private bool _isCanJumpOnSpline = true;
+    private bool _isGround = true;
 
-    private float _maxDistanceForJumpFlipAnim = 7;
+    private float _minDistanceForJumpAnim = 0.5f;
     private float _minDistanceForJumpFlipAnim = 5;
+
     private float _multipleForAnimSpeedRun = 0.2f;
-    private float _multipleForAnimSpeedJump = 0.1f;
-    private float _multipleForJumpSpeed = 2f;
+    private float _multipleForAnimSpeedJump = 1f;
+    private float _multipleForJumpSpeed = 1.5f;
 
     public float Speed
     { 
-        get => _speed; 
+        get
+        {
+            return _speed / _currentBuild.transform.lossyScale.x;
+        }
 
         set 
         { 
             _speed = value; 
-            _splineAnimate.MaxSpeed = _speed;
+            _splineAnimate.MaxSpeed = Speed;
             _animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
             JumpSpeed = _speed * _multipleForJumpSpeed;
         } 
@@ -44,19 +48,14 @@ public class Move : MonoBehaviour
         protected set
         {
             _jumpSpeed = value;
-            _animator.SetFloat(PlayerAnimHash.JumpSpeedAnim, _multipleForAnimSpeedJump * _jumpSpeed);
         }
     }
 
-    public void Init()
+    public void Init(Build build)
     {
+        _currentBuild = build;
         Speed = _speed;
         _splineAnimate.MaxSpeed = Speed;
-    }
-
-    private void Awake()
-    {
-        Init();
 
         _currentSplineIndex = 0;
         _splineAnimate.Container = _currentBuild.SplineContainers[0];
@@ -66,7 +65,7 @@ public class Move : MonoBehaviour
 
     public void JumpToSpline(float dir)
     {
-        if (_isCanJumpOnSpline == false)
+        if (_isGround == false)
             return;
 
         int tempIndex = _currentSplineIndex + -(int)dir;
@@ -92,7 +91,6 @@ public class Move : MonoBehaviour
 
     private void StartRunOnSpline(SplineContainer splineContainer, float timeOnSpline)
     {
-        _animator.SetTrigger(PlayerAnimHash.JumpStan);
         _splineAnimate.Completed -= OnSplineCompleted;
         _splineAnimate.Container = splineContainer;
         _splineAnimate.Completed += OnSplineCompleted;
@@ -144,17 +142,22 @@ public class Move : MonoBehaviour
         return closestSline;
     }
 
-    private void StartAnimJump(float distance)
+    private void StartAnimJump(float time, float distance,  Vector3 targetPoint)
     {
-        if (_minDistanceForJumpFlipAnim < distance && distance < _maxDistanceForJumpFlipAnim)
-            _animator.SetTrigger(PlayerAnimHash.JumpFlip);
+        _animator.SetFloat(PlayerAnimHash.JumpSpeedAnim, _multipleForAnimSpeedJump / time);
+        transform.LookAt(new Vector3(targetPoint.x, transform.position.y, targetPoint.z));
+
+        if (distance <= _minDistanceForJumpAnim)
+            return;
+        else if (_minDistanceForJumpFlipAnim > distance)
+            _animator.SetTrigger(PlayerAnimHash.ShortJump);
         else
-            _animator.SetTrigger(PlayerAnimHash.LongJump);
+            _animator.SetTrigger(PlayerAnimHash.JumpFlip);
     }
 
     private IEnumerator JumpToNextBuildJob()
     {
-        _isCanJumpOnSpline = false;
+        _isGround = false;
 
         SplineContainer _targetSpline = FindNearestSpline(_currentBuild.NextBuild.SplineContainers);
 
@@ -163,30 +166,19 @@ public class Move : MonoBehaviour
         float distance = Vector3.Distance(transform.position, startPointOnSpline);
         float time = distanceX / (Speed * _multipleForJumpSpeed);
         JumpSpeed = distance / time;
-        Vector3 halfPath = (transform.position + startPointOnSpline) / 2f;
-        float heighDistance;
 
-        if (Math.Abs(transform.position.y - startPointOnSpline.y) < _heightOfBuildJump)
-            heighDistance = startPointOnSpline.y + _heightOfBuildJump;
-        else
-            heighDistance = halfPath.y;
+        StartAnimJump(time, distance, startPointOnSpline);
 
-        StartAnimJump(distance);
-
-        transform.LookAt(new Vector3(startPointOnSpline.x, transform.position.y, startPointOnSpline.z));
-
-        transform.DOMove(new Vector3(halfPath.x, heighDistance, halfPath.z), time / 2).SetEase(Ease.Linear);
-        yield return new WaitForSeconds(time / 2);
-
-        transform.DOMove(startPointOnSpline, time / 2).SetEase(Ease.Linear);
-        yield return new WaitForSeconds(time / 2);
+        transform.DOMove(startPointOnSpline, time).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(time);
 
         _currentBuild = _currentBuild.NextBuild;
         _currentSplineIndex = Array.IndexOf(_currentBuild.SplineContainers, _targetSpline);
 
+        Speed = Speed * _currentBuild.transform.lossyScale.x;
         StartRunOnSpline(_currentBuild.SplineContainers[_currentSplineIndex], 0);
 
-        _isCanJumpOnSpline = true;
+        _isGround = true;
 
         yield return null;
     }
