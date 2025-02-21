@@ -420,7 +420,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7458729688065014642}
-  - component: {fileID: 221372597229410691}
   - component: {fileID: 1927680569970804515}
   m_Layer: 0
   m_Name: AsianHouse_2
@@ -452,28 +451,6 @@ Transform:
   - {fileID: 5184044046823813600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!64 &221372597229410691
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4943661651573540981}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 2da58fec7b188e74fa399b4a2b572c16, type: 3}
 --- !u!114 &1927680569970804515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +467,7 @@ MonoBehaviour:
   - {fileID: 1538466103345703081}
   - {fileID: 6799477279566155826}
   _enemySpawnPoints: []
+  _nextBuild: {fileID: 0}
 --- !u!1 &6396817736966125795
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +804,14 @@ PrefabInstance:
     - target: {fileID: 2496410708460222234, guid: 13d77967ca060774a86b0f419c67393a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253927232999298760, guid: 13d77967ca060774a86b0f419c67393a, type: 3}
+      propertyPath: m_Splines.Array.data[0].m_IntData.m_Data.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253927232999298760, guid: 13d77967ca060774a86b0f419c67393a, type: 3}
+      propertyPath: m_Splines.Array.data[0].m_IntData.m_Data.Array.data[0].Value.m_DataPoints.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5773003781744542766, guid: 13d77967ca060774a86b0f419c67393a, type: 3}
       propertyPath: m_Name
