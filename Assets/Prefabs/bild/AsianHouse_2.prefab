@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4732554013620835251}
   - component: {fileID: 681178379760427519}
   - component: {fileID: 3497636078539579730}
-  - component: {fileID: 5146789345275696303}
   m_Layer: 0
   m_Name: Door11
   m_TagString: Untagged
@@ -87,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5146789345275696303
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613610054159559861}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2694677, y: 2.232151, z: 0.24924803}
-  m_Center: {x: -0.63473386, y: -0.7771399, z: 0.082937494}
 --- !u!1 &1870736126889396681
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +183,6 @@ GameObject:
   - component: {fileID: 5401259238417468588}
   - component: {fileID: 4095299317530109117}
   - component: {fileID: 7880100561134846558}
-  - component: {fileID: 2837836087802507647}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -281,27 +258,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2837836087802507647
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2887575041904846298}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3488507, y: 2.232151, z: 0.23457146}
-  m_Center: {x: -0.62844646, y: -0.7771399, z: -0.20938253}
 --- !u!1 &4500398474717970886
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +435,6 @@ GameObject:
   - component: {fileID: 4556209112653528541}
   - component: {fileID: 4200865588891795700}
   - component: {fileID: 2241715716583544890}
-  - component: {fileID: 8578616801112697330}
   m_Layer: 0
   m_Name: Door10
   m_TagString: Untagged
@@ -555,27 +510,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8578616801112697330
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6396817736966125795}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2694678, y: 2.232151, z: 0.24924803}
-  m_Center: {x: 0.6347339, y: -0.77713984, z: -0.082937256}
 --- !u!1 &7083551194715620066
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +521,6 @@ GameObject:
   - component: {fileID: 3034955410939781917}
   - component: {fileID: 5067747532258123069}
   - component: {fileID: 1676394218414623126}
-  - component: {fileID: 46008974201484215}
   m_Layer: 0
   m_Name: Door12
   m_TagString: Untagged
@@ -663,27 +596,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &46008974201484215
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083551194715620066}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3488505, y: 2.232151, z: 0.23457243}
-  m_Center: {x: 0.63976204, y: -0.77713984, z: 0.21407819}
 --- !u!1001 &239969967640035671
 PrefabInstance:
   m_ObjectHideFlags: 0
