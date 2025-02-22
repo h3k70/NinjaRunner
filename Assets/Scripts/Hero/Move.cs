@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using TrailsFX;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -11,12 +12,15 @@ public class Move : MonoBehaviour
     [SerializeField] private float _heightOfBuildJump = 2f;
     [SerializeField] private SplineAnimate _splineAnimate;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _runPoint;
     [SerializeField] private TrailEffect[] _trailEffects;
 
     private float _jumpSpeed;
     private Build _currentBuild;
+    private Build _closerBuild;
     private int _currentSplineIndex;
     private bool _isGround = true;
+    private Coroutine _runCorounine;
 
     private float _minDistanceForJumpAnim = 0.5f;
     private float _minDistanceForJumpFlipAnim = 5;
@@ -40,7 +44,6 @@ public class Move : MonoBehaviour
             JumpSpeed = _speed * _multipleForJumpSpeed;
         } 
     }
-
     public float JumpSpeed
     {
         get => _jumpSpeed;
@@ -50,6 +53,8 @@ public class Move : MonoBehaviour
             _jumpSpeed = value;
         }
     }
+    public Transform RunPoint { get => _runPoint; set => _runPoint = value; }
+    public Build CloserBuild { get => _closerBuild; set => _closerBuild = value; }
 
     public void Init(Build build)
     {
@@ -65,10 +70,37 @@ public class Move : MonoBehaviour
 
     public void JumpToSpline(float dir)
     {
-        if (_isGround == false)
+        int tempIndex = _currentSplineIndex + (int)dir;
+
+        if (_isGround == false || tempIndex == -2)
             return;
 
-        int tempIndex = _currentSplineIndex + -(int)dir;
+        if (tempIndex == -1)
+        {
+            JumpToGround();
+            return;
+        }
+
+        if (_currentBuild == null)
+        {
+            if (_closerBuild.SplineContainers.Length > tempIndex && tempIndex >= 0)
+            {
+                FindNearestPointOnSpline(_closerBuild.SplineContainers[tempIndex], out Vector3 nearestPoint, out float timeOnSpline);
+
+                if (timeOnSpline == 1 || timeOnSpline == 0)
+                    return;
+
+                _currentBuild = _closerBuild;
+
+                StartCoroutine(TrailRenderJob());
+                StartRunOnSpline(_currentBuild.SplineContainers[tempIndex], timeOnSpline);
+
+                _currentSplineIndex = tempIndex;
+
+                return;
+            }
+        }
+            
 
         if (_currentBuild.SplineContainers.Length > tempIndex && tempIndex >= 0)
         {
@@ -84,6 +116,16 @@ public class Move : MonoBehaviour
         }
     }
 
+    private void JumpToGround()
+    {
+        _currentSplineIndex = -1;
+        _currentBuild = null;
+        _splineAnimate.Pause();
+        StartCoroutine(TrailRenderJob());
+        transform.position = new Vector3(transform.position.x, _runPoint.position.y, _runPoint.position.z);
+        _runCorounine = StartCoroutine(RunOnGroundJob());
+    }
+
     private void OnSplineCompleted()
     {
         StartCoroutine(JumpToNextBuildJob());
@@ -91,6 +133,9 @@ public class Move : MonoBehaviour
 
     private void StartRunOnSpline(SplineContainer splineContainer, float timeOnSpline)
     {
+        if (_runCorounine != null)
+            StopCoroutine(_runCorounine);
+
         _splineAnimate.Completed -= OnSplineCompleted;
         _splineAnimate.Container = splineContainer;
         _splineAnimate.Completed += OnSplineCompleted;
@@ -157,6 +202,11 @@ public class Move : MonoBehaviour
 
     private IEnumerator JumpToNextBuildJob()
     {
+        if (_currentBuild.NextBuild == null)
+        {
+            JumpToGround();
+            yield break;
+        }
         _isGround = false;
 
         SplineContainer _targetSpline = FindNearestSpline(_currentBuild.NextBuild.SplineContainers);
@@ -192,5 +242,14 @@ public class Move : MonoBehaviour
 
         foreach (var item in _trailEffects)
             item.color = Color.clear;
+    }
+
+    private IEnumerator RunOnGroundJob()
+    {
+        while (true)
+        {
+            yield return null;
+            transform.Translate(Vector3.right * _speed * Time.deltaTime, Space.World);
+        }
     }
 }

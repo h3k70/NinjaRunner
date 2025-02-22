@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7005941764815619207}
   - component: {fileID: 1577026220876431852}
   - component: {fileID: 2381740471065366604}
-  - component: {fileID: 7323030406283268707}
   - component: {fileID: 6128275127739301691}
-  m_Layer: 0
+  - component: {fileID: 5216294841691344769}
+  m_Layer: 9
   m_Name: Torii_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7323030406283268707
+--- !u!114 &6128275127739301691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126857840836707763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2afb62e948d334ab5de489c2fa2fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _splineContainers:
+  - {fileID: 6726911596824397870}
+  _enemys: []
+  _maxEnemy: 0
+  _nextBuild: {fileID: 0}
+--- !u!65 &5216294841691344769
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,26 +123,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 11.698166, y: 3.3775978, z: 1.7569504}
-  m_Center: {x: 0, y: 8.43, z: 0}
---- !u!114 &6128275127739301691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126857840836707763}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d2afb62e948d334ab5de489c2fa2fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _splineContainers:
-  - {fileID: 6726911596824397870}
-  _enemySpawnPoints: []
-  _nextBuild: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 11.698166, y: 4.1442046, z: 24.02314}
+  m_Center: {x: 0, y: 2.0721023, z: -0.2728672}
 --- !u!1001 &2868318790053548174
 PrefabInstance:
   m_ObjectHideFlags: 0

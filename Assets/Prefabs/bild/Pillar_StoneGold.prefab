@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7532251643076199636}
   - component: {fileID: 2905519701249501282}
   - component: {fileID: 5431185293695208318}
-  m_Layer: 0
+  - component: {fileID: 8160024011830404515}
+  m_Layer: 9
   m_Name: Pillar_StoneGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,8 +103,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _splineContainers:
   - {fileID: 4107468788670891267}
-  _enemySpawnPoints: []
+  _enemys: []
+  _maxEnemy: 0
   _nextBuild: {fileID: 0}
+--- !u!65 &8160024011830404515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300698716050999466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.26, y: 5, z: 12.9}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &8462496149138713561
 GameObject:
   m_ObjectHideFlags: 0

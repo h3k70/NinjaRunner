@@ -26,6 +26,14 @@ public class Player : MonoBehaviour
         _inputs.Player.Move.canceled += context => OnSwipeEnded(context.ReadValue<Vector2>());
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Build>(out Build build))
+        {
+            _move.CloserBuild = build;
+        }
+    }
+
     private void OnSwipeStarted(Vector2 dir)
     {
         _swipeStartPosition = dir;

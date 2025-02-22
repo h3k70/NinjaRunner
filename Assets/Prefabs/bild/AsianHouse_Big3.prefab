@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 38561462519111372}
   - component: {fileID: 1932797587277414809}
-  m_Layer: 0
+  - component: {fileID: 7412155444309749450}
+  m_Layer: 9
   m_Name: AsianHouse_Big3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,11 +55,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splineContainers:
-  - {fileID: 3750976720978864242}
-  - {fileID: 327677905213210366}
   - {fileID: 8706211339920955150}
-  _enemySpawnPoints: []
+  - {fileID: 327677905213210366}
+  - {fileID: 3750976720978864242}
+  _enemys: []
+  _maxEnemy: 0
   _nextBuild: {fileID: 0}
+--- !u!65 &7412155444309749450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105414801337132912}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 17.9, y: 3.11, z: 10.4}
+  m_Center: {x: -0.6, y: 1.17, z: 0}
 --- !u!1 &436052498446010013
 GameObject:
   m_ObjectHideFlags: 0

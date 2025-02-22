@@ -377,7 +377,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7458729688065014642}
   - component: {fileID: 1927680569970804515}
-  m_Layer: 0
+  - component: {fileID: 1130552017362486140}
+  m_Layer: 9
   m_Name: AsianHouse_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,10 +421,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splineContainers:
-  - {fileID: 1538466103345703081}
   - {fileID: 6799477279566155826}
-  _enemySpawnPoints: []
+  - {fileID: 1538466103345703081}
+  _enemys: []
+  _maxEnemy: 0
   _nextBuild: {fileID: 0}
+--- !u!65 &1130552017362486140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943661651573540981}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 17.95, y: 3, z: 11}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6396817736966125795
 GameObject:
   m_ObjectHideFlags: 0

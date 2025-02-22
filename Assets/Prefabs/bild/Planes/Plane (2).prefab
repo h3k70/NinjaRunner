@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3916079449539770387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3102845575208872935}
+  m_Layer: 0
+  m_Name: RunPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3102845575208872935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916079449539770387}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.12}
+  m_LocalScale: {x: 0.1, y: 0.11111112, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5194146951451990789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8345723800291985309
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,7 @@ GameObject:
   - component: {fileID: 5194146951451990789}
   - component: {fileID: 930133825583710310}
   - component: {fileID: 2954586143734827815}
+  - component: {fileID: 5287409488908801118}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -56,6 +88,7 @@ Transform:
   - {fileID: 6114890441864412127}
   - {fileID: 1138997279913876539}
   - {fileID: 498198842167404824}
+  - {fileID: 3102845575208872935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &930133825583710310
@@ -111,6 +144,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5287409488908801118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8345723800291985309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45b33d0cc734bf429b3e78c7a688244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _builds: []
+  _enemies: []
+  _runPoint: {fileID: 3102845575208872935}
 --- !u!1001 &568633761051055831
 PrefabInstance:
   m_ObjectHideFlags: 0
