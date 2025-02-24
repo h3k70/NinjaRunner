@@ -5,19 +5,14 @@ public class SwordAttack : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _attackDelay = 0.7f;
-    [SerializeField] private Collider _swordCollider;
+    [SerializeField] private Sword _sword;
 
     private bool _isReady = true;
     private Coroutine _cooldownCoroutine;
 
     public void EnableSwordCollider()
     {
-        _swordCollider.enabled = true;
-    }
-
-    public void DisableSwordCollider()
-    {
-        _swordCollider.enabled = false;
+        _sword.Activate();
     }
 
     public void OnAttack()

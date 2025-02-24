@@ -1,0 +1,5 @@
+C:/Unity/NinjaRun/.utmp/Debug/6w5w5m3v/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Unity/NinjaRun/.utmp/Debug/6w5w5m3v/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Unity/NinjaRun/.utmp/Debug/6w5w5m3v/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Unity/NinjaRun/.utmp/Debug/6w5w5m3v/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Unity/NinjaRun/.utmp/Debug/6w5w5m3v/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

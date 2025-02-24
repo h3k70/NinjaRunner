@@ -16,7 +16,7 @@ public class Move : MonoBehaviour
     [SerializeField] private TrailEffect[] _trailEffects;
 
     private float _jumpSpeed;
-    private Build _currentBuild;
+    [SerializeField] private Build _currentBuild;
     private Build _closerBuild;
     private int _currentSplineIndex;
     private bool _isGround = true;
@@ -33,7 +33,10 @@ public class Move : MonoBehaviour
     { 
         get
         {
-            return _speed / _currentBuild.transform.lossyScale.x;
+            if (_currentBuild != null)
+                return _speed / _currentBuild.transform.lossyScale.x;
+            else
+                return _speed;
         }
 
         set 
@@ -56,23 +59,32 @@ public class Move : MonoBehaviour
     public Transform RunPoint { get => _runPoint; set => _runPoint = value; }
     public Build CloserBuild { get => _closerBuild; set => _closerBuild = value; }
 
-    public void Init(Build build)
+    public void Init(Transform runPoint = null, Build build = null)
     {
-        _currentBuild = build;
+        //_runPoint = runPoint;
+        //_currentBuild = build;
         Speed = _speed;
         _splineAnimate.MaxSpeed = Speed;
 
-        _currentSplineIndex = 0;
-        _splineAnimate.Container = _currentBuild.SplineContainers[0];
-        _splineAnimate.Completed += OnSplineCompleted;
-        _splineAnimate.Play();
+        if (_currentBuild == null)
+        {
+            _currentSplineIndex = -1;
+            _runCorounine = StartCoroutine(RunOnGroundJob());
+        }
+        else
+        {
+            _currentSplineIndex = 0;
+            _splineAnimate.Container = _currentBuild.SplineContainers[0];
+            _splineAnimate.Completed += OnSplineCompleted;
+            _splineAnimate.Play();
+        }
     }
 
     public void JumpToSpline(float dir)
     {
         int tempIndex = _currentSplineIndex + (int)dir;
 
-        if (_isGround == false || tempIndex == -2)
+        if (_isGround == false || tempIndex == -2 || _closerBuild == null)
             return;
 
         if (tempIndex == -1)
@@ -122,7 +134,6 @@ public class Move : MonoBehaviour
         _currentBuild = null;
         _splineAnimate.Pause();
         StartCoroutine(TrailRenderJob());
-        transform.position = new Vector3(transform.position.x, _runPoint.position.y, _runPoint.position.z);
         _runCorounine = StartCoroutine(RunOnGroundJob());
     }
 
@@ -140,6 +151,7 @@ public class Move : MonoBehaviour
         _splineAnimate.Container = splineContainer;
         _splineAnimate.Completed += OnSplineCompleted;
         _splineAnimate.NormalizedTime = timeOnSpline;
+        _splineAnimate.MaxSpeed = Speed;
         _splineAnimate.Play();
     }
 
@@ -155,6 +167,7 @@ public class Move : MonoBehaviour
         {
             float t = i / (float)step;
             Vector3 pointOnSpline = spline.EvaluatePosition(t);
+            pointOnSpline = new Vector3(pointOnSpline.x, 0, pointOnSpline.z); // without y
             float distance = (targetPosition - pointOnSpline).sqrMagnitude;
 
             if (distance < closestDistance)
@@ -212,9 +225,8 @@ public class Move : MonoBehaviour
         SplineContainer _targetSpline = FindNearestSpline(_currentBuild.NextBuild.SplineContainers);
 
         Vector3 startPointOnSpline = _targetSpline.transform.TransformPoint(_targetSpline.Spline[0].Position);
-        float distanceX = Math.Abs(startPointOnSpline.x - transform.position.x);
         float distance = Vector3.Distance(transform.position, startPointOnSpline);
-        float time = distanceX / (Speed * _multipleForJumpSpeed);
+        float time = distance / (_speed * _multipleForJumpSpeed);
         JumpSpeed = distance / time;
 
         StartAnimJump(time, distance, startPointOnSpline);
@@ -246,6 +258,9 @@ public class Move : MonoBehaviour
 
     private IEnumerator RunOnGroundJob()
     {
+        transform.position = new Vector3(transform.position.x, _runPoint.position.y, _runPoint.position.z);
+        transform.LookAt(transform.position + Vector3.right);
+
         while (true)
         {
             yield return null;

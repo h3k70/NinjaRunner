@@ -9,14 +9,13 @@ public class Player : MonoBehaviour
     [SerializeField] private SwordAttack _baseAttack;
 
     private PlayerInput _inputs;
-    [SerializeField] private Build _currentBuild;
     private bool _isSwipeEnded = true;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
 
     private void Awake()
     {
-        _move.Init(_currentBuild);
+        _move.Init();
 
         _inputs = new PlayerInput();
 
