@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7397354712172067315}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dueBilds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,10 +85,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsianHouse_Big3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 436052498446010013, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 955013965842842189, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283929408000974958, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425254093301024232, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1932797587277414809, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
       propertyPath: _nextBuild
       value: 
       objectReference: {fileID: 3688875329268300509}
+    - target: {fileID: 2401384916062123746, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516355695747584650, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541937739721169598, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812582240961403644, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209612909819617774, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -159,9 +195,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsianHouse_Big3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 436052498446010013, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 955013965842842189, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283929408000974958, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425254093301024232, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1597334987294311719, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401384916062123746, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516355695747584650, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541937739721169598, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812582240961403644, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9209612909819617774, guid: 73290974e82a3dc4f8cf3c031320e21d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

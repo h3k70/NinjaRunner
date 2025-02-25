@@ -8,9 +8,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Chunk _startChunk;
     [SerializeField] private Player _player;
 
-    private Queue<Chunk> _chunksQueue;
-    private Chunk _currentChunk;
-    private Chunk _nextChunk;
+    private Queue<Chunk> _chunksQueue = new();
+    [SerializeField] private Chunk _currentChunk;
+    [SerializeField] private Chunk _nextChunk;
     private float _chunkSizeZ = 40;
     private float _chunkSizeX = 100;
 
@@ -19,16 +19,22 @@ public class Spawner : MonoBehaviour
         if(_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
         {
             _chunksPull.Add(_currentChunk);
+            _currentChunk.gameObject.SetActive(false);
+
             _currentChunk = _nextChunk;
 
             if (_chunksQueue.TryDequeue(out Chunk newChunk))
             {
                 _nextChunk = newChunk;
+                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                _nextChunk.gameObject.SetActive(true);
             }
             else
             {
                 GenerateQueueOfChunks();
                 _nextChunk = _chunksQueue.Dequeue();
+                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                _nextChunk.gameObject.SetActive(true);
             }
         }
     }

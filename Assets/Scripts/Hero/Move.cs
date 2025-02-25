@@ -19,7 +19,8 @@ public class Move : MonoBehaviour
     [SerializeField] private Build _currentBuild;
     private Build _closerBuild;
     private int _currentSplineIndex;
-    private bool _isGround = true;
+    private bool _isGrounded = true;
+    private bool _isRunOnGround = false;
     private Coroutine _runCorounine;
 
     private float _minDistanceForJumpAnim = 0.5f;
@@ -43,7 +44,7 @@ public class Move : MonoBehaviour
         { 
             _speed = value; 
             _splineAnimate.MaxSpeed = Speed;
-            _animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
+            //_animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
             JumpSpeed = _speed * _multipleForJumpSpeed;
         } 
     }
@@ -59,6 +60,14 @@ public class Move : MonoBehaviour
     public Transform RunPoint { get => _runPoint; set => _runPoint = value; }
     public Build CloserBuild { get => _closerBuild; set => _closerBuild = value; }
 
+    private void Update()
+    {
+        if (_isRunOnGround == false)
+            return;
+
+        MoveOnGround();
+    }
+
     public void Init(Transform runPoint = null, Build build = null)
     {
         //_runPoint = runPoint;
@@ -68,8 +77,7 @@ public class Move : MonoBehaviour
 
         if (_currentBuild == null)
         {
-            _currentSplineIndex = -1;
-            _runCorounine = StartCoroutine(RunOnGroundJob());
+            JumpToGround();
         }
         else
         {
@@ -84,7 +92,7 @@ public class Move : MonoBehaviour
     {
         int tempIndex = _currentSplineIndex + (int)dir;
 
-        if (_isGround == false || tempIndex == -2 || _closerBuild == null)
+        if (_isGrounded == false || tempIndex == -2 || _closerBuild == null)
             return;
 
         if (tempIndex == -1)
@@ -93,38 +101,24 @@ public class Move : MonoBehaviour
             return;
         }
 
-        if (_currentBuild == null)
+        if (_isRunOnGround)
         {
-            if (_closerBuild.SplineContainers.Length > tempIndex && tempIndex >= 0)
-            {
-                FindNearestPointOnSpline(_closerBuild.SplineContainers[tempIndex], out Vector3 nearestPoint, out float timeOnSpline);
-
-                if (timeOnSpline == 1 || timeOnSpline == 0)
-                    return;
-
-                _currentBuild = _closerBuild;
-
-                StartCoroutine(TrailRenderJob());
-                StartRunOnSpline(_currentBuild.SplineContainers[tempIndex], timeOnSpline);
-
-                _currentSplineIndex = tempIndex;
-
-                return;
-            }
+            _currentBuild = _closerBuild;
         }
-            
 
         if (_currentBuild.SplineContainers.Length > tempIndex && tempIndex >= 0)
         {
             FindNearestPointOnSpline(_currentBuild.SplineContainers[tempIndex], out Vector3 nearestPoint, out float timeOnSpline);
 
-            if(timeOnSpline == 1 || timeOnSpline == 0)
+            if (timeOnSpline == 1 || timeOnSpline == 0)
                 return;
 
             StartCoroutine(TrailRenderJob());
             StartRunOnSpline(_currentBuild.SplineContainers[tempIndex], timeOnSpline);
 
             _currentSplineIndex = tempIndex;
+
+            return;
         }
     }
 
@@ -134,7 +128,14 @@ public class Move : MonoBehaviour
         _currentBuild = null;
         _splineAnimate.Pause();
         StartCoroutine(TrailRenderJob());
-        _runCorounine = StartCoroutine(RunOnGroundJob());
+        _isRunOnGround = true;
+        transform.position = new Vector3(transform.position.x, _runPoint.position.y, _runPoint.position.z);
+        transform.LookAt(transform.position + Vector3.right);
+    }
+
+    private void MoveOnGround()
+    {
+        transform.Translate(Vector3.right * _speed * Time.deltaTime, Space.World);
     }
 
     private void OnSplineCompleted()
@@ -144,14 +145,14 @@ public class Move : MonoBehaviour
 
     private void StartRunOnSpline(SplineContainer splineContainer, float timeOnSpline)
     {
-        if (_runCorounine != null)
-            StopCoroutine(_runCorounine);
+        _isRunOnGround = false;
 
         _splineAnimate.Completed -= OnSplineCompleted;
         _splineAnimate.Container = splineContainer;
         _splineAnimate.Completed += OnSplineCompleted;
-        _splineAnimate.NormalizedTime = timeOnSpline;
         _splineAnimate.MaxSpeed = Speed;
+        _splineAnimate.NormalizedTime = timeOnSpline;
+
         _splineAnimate.Play();
     }
 
@@ -220,7 +221,7 @@ public class Move : MonoBehaviour
             JumpToGround();
             yield break;
         }
-        _isGround = false;
+        _isGrounded = false;
 
         SplineContainer _targetSpline = FindNearestSpline(_currentBuild.NextBuild.SplineContainers);
 
@@ -240,7 +241,7 @@ public class Move : MonoBehaviour
         Speed = Speed * _currentBuild.transform.lossyScale.x;
         StartRunOnSpline(_currentBuild.SplineContainers[_currentSplineIndex], 0);
 
-        _isGround = true;
+        _isGrounded = true;
 
         yield return null;
     }
