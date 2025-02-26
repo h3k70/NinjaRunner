@@ -7,6 +7,14 @@ public class Sword : MonoBehaviour
     [SerializeField] private TrailEffect _trailEffect;
     [SerializeField] private Collider _swordCollider;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            enemy.Die();
+        }
+    }
+
     public void Activate()
     {
         _swordCollider.enabled = true;

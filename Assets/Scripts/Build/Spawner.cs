@@ -14,12 +14,22 @@ public class Spawner : MonoBehaviour
     private float _chunkSizeZ = 40;
     private float _chunkSizeX = 100;
 
+    private void Start()
+    {
+        foreach (var item in _chunksPull)
+        {
+            item.Init(_player);
+        }
+        _currentChunk.Init(_player);
+        _currentChunk.Activate();
+    }
+
     private void Update()
     {
         if(_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
         {
             _chunksPull.Add(_currentChunk);
-            _currentChunk.gameObject.SetActive(false);
+            _currentChunk.Deactivate();
 
             _currentChunk = _nextChunk;
 
@@ -27,14 +37,14 @@ public class Spawner : MonoBehaviour
             {
                 _nextChunk = newChunk;
                 _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.gameObject.SetActive(true);
+                _nextChunk.Activate();
             }
             else
             {
                 GenerateQueueOfChunks();
                 _nextChunk = _chunksQueue.Dequeue();
                 _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.gameObject.SetActive(true);
+                _nextChunk.Activate();
             }
         }
     }

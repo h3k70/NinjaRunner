@@ -33,6 +33,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        //_inputs.Disable();
+        //_move.enabled = false;
+        //_animator.SetTrigger(PlayerAnimHash.Die);
+
+        Debug.Log("AAAAA");
+    }
+
     private void OnSwipeStarted(Vector2 dir)
     {
         _swipeStartPosition = dir;
