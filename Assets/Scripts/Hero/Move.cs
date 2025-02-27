@@ -12,11 +12,11 @@ public class Move : MonoBehaviour
     [SerializeField] private float _heightOfBuildJump = 2f;
     [SerializeField] private SplineAnimate _splineAnimate;
     [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _runPoint;
     [SerializeField] private TrailEffect[] _trailEffects;
 
+    private Transform _runPoint;
     private float _jumpSpeed;
-    [SerializeField] private Build _currentBuild;
+    private Build _currentBuild;
     private Build _closerBuild;
     private int _currentSplineIndex;
     private bool _isGrounded = true;
@@ -68,10 +68,10 @@ public class Move : MonoBehaviour
         MoveOnGround();
     }
 
-    public void Init(Transform runPoint = null, Build build = null)
+    public void Init(Transform runPoint, Build build = null)
     {
-        //_runPoint = runPoint;
-        //_currentBuild = build;
+        _runPoint = runPoint;
+        _currentBuild = build;
         Speed = _speed;
         _splineAnimate.MaxSpeed = Speed;
 

@@ -13,9 +13,11 @@ public class Enemy : MonoBehaviour
     private float _hightForJumpHead = 3f;
     private float _jumpHeadDuration = 1f;
     private float _attackDistanceX = 2f;
-    private float _attackDistanceY = -0.5f;
+    private float _attackDistanceY = 1f;
     private Player _target;
     private Coroutine _attackCoroutine;
+
+    public Action Die;
 
     public void Init(Player target)
     {
@@ -25,9 +27,12 @@ public class Enemy : MonoBehaviour
 
     public void Activate()
     {
+        gameObject.SetActive(true);
+
         _animator.SetTrigger(EnemyAnimHash.Reset);
         _attack.IsCanAttack = true;
 
+        _head.transform.localScale = Vector3.one;
         _particleHead.SetActive(false);
         _particleHead.transform.localPosition = Vector3.zero;
         _particleHead.transform.localRotation = Quaternion.identity;
@@ -35,7 +40,7 @@ public class Enemy : MonoBehaviour
         _attackCoroutine = StartCoroutine(AttackJob());
     }
 
-    public void Die()
+    public void TakeDamage()
     {
         StopCoroutine(_attackCoroutine);
         _attack.IsCanAttack = false;
@@ -49,10 +54,12 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator AttackJob()
     {
-        while (transform.position.x - _target.transform.position.x > _attackDistanceX || transform.position.y - _target.transform.position.y < _attackDistanceY)
+        while (transform.position.x - _target.transform.position.x > _attackDistanceX)
         {
             yield return null;
         }
-        _animator.SetTrigger(EnemyAnimHash.Attack);
+
+        if (Math.Abs(transform.position.y - _target.transform.position.y) <= _attackDistanceY)
+            _animator.SetTrigger(EnemyAnimHash.Attack);
     }
 }

@@ -12,6 +12,6 @@ public class EnemyAttack : MonoBehaviour
     public void AnimEventAttack()
     {
         if (_isCanAttack)
-            Target.Die();
+            Target.TakeDamage();
     }
 }

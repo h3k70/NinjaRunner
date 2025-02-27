@@ -11,7 +11,7 @@ public class Sword : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            enemy.Die();
+            enemy.TakeDamage();
         }
     }
 

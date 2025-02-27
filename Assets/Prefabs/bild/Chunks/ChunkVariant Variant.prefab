@@ -53,6 +53,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5287409488908801118, guid: 89a3a38a74a9cae4bb794a95a59c9b61, type: 3}
+      propertyPath: _enemies.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5287409488908801118, guid: 89a3a38a74a9cae4bb794a95a59c9b61, type: 3}
       propertyPath: '_builds.Array.data[0]'
       value: 
       objectReference: {fileID: 7954999718516055259}
@@ -83,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 8345723800291985309, guid: 89a3a38a74a9cae4bb794a95a59c9b61, type: 3}
       propertyPath: m_Name
       value: ChunkVariant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345723800291985309, guid: 89a3a38a74a9cae4bb794a95a59c9b61, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

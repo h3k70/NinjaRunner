@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _move.Init();
-
         _inputs = new PlayerInput();
 
         _inputs.Player.Attack.performed += context => _baseAttack.OnAttack();
@@ -33,12 +31,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Init(Transform runPoint, Build build = null)
+    {
+        _move.Init(runPoint, build);
+    }
+
+    public void TakeDamage()
     {
         //_inputs.Disable();
         //_move.enabled = false;
         //_animator.SetTrigger(PlayerAnimHash.Die);
-
+        _animator.SetTrigger(PlayerAnimHash.JumpStan);
         Debug.Log("AAAAA");
     }
 

@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chunk Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8345723800291985309, guid: 89a3a38a74a9cae4bb794a95a59c9b61, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

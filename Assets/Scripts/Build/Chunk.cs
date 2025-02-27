@@ -10,11 +10,13 @@ public class Chunk : MonoBehaviour
     [SerializeField] private Transform _endConnectPoint;
 
     private Player _player;
+    private float _activationChance = 50f;
 
     public Transform StartConnectPoint { get => _startConnectPoint; }
     public Transform EndConnectPoint { get => _endConnectPoint; }
     public Transform RunPoint { get => _runPoint; }
     public Player Player { get => _player; }
+    public Build[] Builds { get => _builds; set => _builds = value; }
 
 #if UNITY_EDITOR
     [ContextMenu("connectBuild")]
@@ -41,19 +43,24 @@ public class Chunk : MonoBehaviour
     public void Deactivate()
     {
         gameObject.SetActive(false);
+
+        foreach (var item in _enemies)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 
     private void ResetEnemy()
     {
-        foreach (var item in _builds)
-        {
-            item.ResetEnemy();
-        }
-
         foreach (var item in _enemies)
         {
-            item.Init(_player);
-            item.Activate();
+            float randomValue = Random.Range(0f, 100f);
+
+            if (randomValue <= _activationChance)
+            {
+                item.Init(_player);
+                item.Activate();
+            }
         }
     }
 }

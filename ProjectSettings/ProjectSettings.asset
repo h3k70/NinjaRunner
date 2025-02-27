@@ -143,6 +143,7 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - {fileID: 11400000, guid: e4c350ac7d029c349aec907020335572, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -537,7 +538,7 @@ PlayerSettings:
     m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000
-    m_Automatic: 0
+    m_Automatic: 1
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -552,7 +553,7 @@ PlayerSettings:
   m_BuildTargetGroupLightmapEncodingQuality:
   - serializedVersion: 2
     m_BuildTarget: Android
-    m_EncodingQuality: 1
+    m_EncodingQuality: 0
   - serializedVersion: 2
     m_BuildTarget: WebGL
     m_EncodingQuality: 0
@@ -560,10 +561,13 @@ PlayerSettings:
   - m_BuildTarget: WebGL
     m_TextureStreamingEnabled: 0
     m_TextureStreamingPriority: 0
+  - m_BuildTarget: Android
+    m_TextureStreamingEnabled: 0
+    m_TextureStreamingPriority: 0
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding:
   - m_BuildTarget: Android
-    m_Encoding: 1
+    m_Encoding: 0
   m_BuildTargetDefaultTextureCompressionFormat:
   - serializedVersion: 3
     m_BuildTarget: Android
@@ -837,7 +841,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;POSEIDON;POSEIDON_URP
+    Android: DOTWEEN
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN

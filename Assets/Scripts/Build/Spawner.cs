@@ -9,19 +9,31 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Player _player;
 
     private Queue<Chunk> _chunksQueue = new();
-    [SerializeField] private Chunk _currentChunk;
-    [SerializeField] private Chunk _nextChunk;
+    private Chunk _currentChunk;
+    private Chunk _nextChunk;
     private float _chunkSizeZ = 40;
     private float _chunkSizeX = 100;
 
     private void Start()
     {
+        _player.Init(_startChunk.RunPoint);
+
         foreach (var item in _chunksPull)
         {
             item.Init(_player);
         }
-        _currentChunk.Init(_player);
+        GenerateQueueOfChunks();
+
+        _startChunk.Init(_player);
+        _startChunk.Activate();
+
+        _currentChunk = _chunksQueue.Dequeue(); ;
+        _currentChunk.transform.position += _startChunk.EndConnectPoint.position - _currentChunk.StartConnectPoint.position;
         _currentChunk.Activate();
+
+        _nextChunk = _chunksQueue.Dequeue();
+        _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+        _nextChunk.Activate();
     }
 
     private void Update()
@@ -46,6 +58,7 @@ public class Spawner : MonoBehaviour
                 _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
                 _nextChunk.Activate();
             }
+            _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
         }
     }
 

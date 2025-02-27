@@ -97,19 +97,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 571218941027064794, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.35796955
+      value: 0.32458255
       objectReference: {fileID: 0}
     - target: {fileID: 571218941027064794, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09257722
+      value: -0.010200472
       objectReference: {fileID: 0}
     - target: {fileID: 571218941027064794, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8995375
+      value: -0.9453357
       objectReference: {fileID: 0}
     - target: {fileID: 571218941027064794, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.23263621
+      value: -0.029708525
       objectReference: {fileID: 0}
     - target: {fileID: 571218941027064794, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -219,9 +219,33 @@ PrefabInstance:
       propertyPath: InitialModule.startSpeed.scalar
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6288820680800824309, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_Quality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288820680800824309, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288820680800824309, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288820680800824309, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6779484657632143240, guid: d78af930908146044a1bb52e630d6179, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911812956793371730, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911812956793371730, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_CullingMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1390861580594791876, guid: d78af930908146044a1bb52e630d6179, type: 3}
@@ -264,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570c7726d5fd114d9d89858482ad68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
 --- !u!4 &9101009982295709950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5446299665916312269, guid: d78af930908146044a1bb52e630d6179, type: 3}
