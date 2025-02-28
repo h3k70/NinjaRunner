@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private float _damage = 20;
     [SerializeField] private GameObject _head;
     [SerializeField] private GameObject _particleHead;
     [SerializeField] private Animator _animator;
@@ -17,12 +18,15 @@ public class Enemy : MonoBehaviour
     private Player _target;
     private Coroutine _attackCoroutine;
 
+    public float Damage { get => _damage; set => _damage = value; }
+
     public Action Die;
 
     public void Init(Player target)
     {
         _target = target;
         _attack.Target = target;
+        _attack.Damage = _damage;
     }
 
     public void Activate()

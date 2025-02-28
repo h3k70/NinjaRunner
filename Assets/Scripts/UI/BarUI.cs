@@ -1,0 +1,31 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BarUI : MonoBehaviour
+{
+    [SerializeField] private Slider _slider;
+
+    private Resource _resource;
+    private float _maxValue;
+
+    public void Init(Resource resource)
+    {
+        _resource = resource;
+        _maxValue = _resource.MaxValue;
+
+        OnValueChanged(_resource.Value);
+
+        _resource.MaxValueChanged += OnMaxValueChanged;
+        _resource.ValueChanged += OnValueChanged;
+    }
+
+    private void OnValueChanged(float value)
+    {
+        _slider.value = value / _maxValue;
+    }
+
+    private void OnMaxValueChanged(float value)
+    {
+        _maxValue = value;
+    }
+}

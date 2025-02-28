@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player; // Ссылка на трансформ игрока
+    public Player player; // Ссылка на трансформ игрока
     public Vector3 offset = new Vector3(0f, 2f, -7f); // Смещение камеры относительно игрока
     public float smoothSpeed = 0.125f; // Скорость плавного перемещения камеры
     private float y;
@@ -12,18 +13,21 @@ public class CameraFollow : MonoBehaviour
     {
         y = transform.position.y;
         z = transform.position.z;
+
+        player.Died += OnDied;
+    }
+
+    private void OnDied()
+    {
+        offset = new Vector3(0, -8 + player.transform.position.y, 9);
+        transform.LookAt(player.transform.position);
+        smoothSpeed = 0.01f;
     }
 
     void LateUpdate()
     {
-        if (player == null)
-        {
-            Debug.LogWarning("Игрок не задан для камеры!");
-            return;
-        }
-
         // Вычисляем целевую позицию камеры
-        Vector3 desiredPosition = new Vector3(player.position.x, y, z) + offset;
+        Vector3 desiredPosition = new Vector3(player.transform.position.x, y, z) + offset;
 
         // Плавно перемещаем камеру к целевой позиции
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);

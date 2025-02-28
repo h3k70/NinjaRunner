@@ -1,17 +1,22 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float _maxHP = 100;
     [SerializeField] private Animator _animator;
     [SerializeField] private Move _move;
     [SerializeField] private SwordAttack _baseAttack;
 
+    private Resource _health = new();
     private PlayerInput _inputs;
     private bool _isSwipeEnded = true;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
+
+    public Resource Health { get => _health; }
+
+    public Action Died;
 
     private void Awake()
     {
@@ -21,6 +26,16 @@ public class Player : MonoBehaviour
         _inputs.Player.Move.started += context => OnSwipeStarted(context.ReadValue<Vector2>());
         _inputs.Player.Move.performed += context => OnSwipe(context.ReadValue<Vector2>());
         _inputs.Player.Move.canceled += context => OnSwipeEnded(context.ReadValue<Vector2>());
+    }
+
+    private void OnEnable()
+    {
+        _inputs.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputs.Disable();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,16 +48,27 @@ public class Player : MonoBehaviour
 
     public void Init(Transform runPoint, Build build = null)
     {
+        _health.Init(_maxHP);
         _move.Init(runPoint, build);
+
+        _health.Ended += Die;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float value)
     {
-        //_inputs.Disable();
-        //_move.enabled = false;
-        //_animator.SetTrigger(PlayerAnimHash.Die);
         _animator.SetTrigger(PlayerAnimHash.JumpStan);
-        Debug.Log("AAAAA");
+        _health.Take(value);
+    }
+
+    private void Die()
+    {
+        _health.Ended -= Die;
+
+        _inputs.Player.Disable();
+        _move.enabled = false;
+        _animator.SetTrigger(PlayerAnimHash.Die);
+
+        Died?.Invoke();
     }
 
     private void OnSwipeStarted(Vector2 dir)
@@ -77,15 +103,5 @@ public class Player : MonoBehaviour
     {
         _swipeStartPosition = Vector2.zero;
         _isSwipeEnded = true;
-    }
-
-    private void OnEnable()
-    {
-        _inputs.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputs.Disable();
     }
 }

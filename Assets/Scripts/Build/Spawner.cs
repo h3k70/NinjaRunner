@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<Chunk> _chunksPull;
     [SerializeField] private Chunk _startChunk;
     [SerializeField] private Player _player;
+    [SerializeField] private BarUI _HPBar;
 
     private Queue<Chunk> _chunksQueue = new();
     private Chunk _currentChunk;
@@ -36,6 +37,10 @@ public class Spawner : MonoBehaviour
         _nextChunk.Activate();
 
         _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
+
+
+
+        _HPBar.Init(_player.Health);
     }
 
     private void Update()

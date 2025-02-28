@@ -68,6 +68,17 @@ public class Move : MonoBehaviour
         MoveOnGround();
     }
 
+    private void OnEnable()
+    {
+        if(_splineAnimate.Container != null)
+            _splineAnimate.Play();
+    }
+
+    private void OnDisable()
+    {
+        _splineAnimate.Pause();
+    }
+
     public void Init(Transform runPoint, Build build = null)
     {
         _runPoint = runPoint;
