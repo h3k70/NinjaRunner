@@ -110,7 +110,7 @@ public class Move : MonoBehaviour
         {
             FindNearestPointOnSpline(_currentBuild.SplineContainers[tempIndex], out Vector3 nearestPoint, out float timeOnSpline);
 
-            if (timeOnSpline == 1 || timeOnSpline == 0)
+            if (timeOnSpline == 1)
                 return;
 
             StartCoroutine(TrailRenderJob());

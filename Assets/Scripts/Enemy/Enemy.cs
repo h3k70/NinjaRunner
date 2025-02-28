@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private float _hightForJumpHead = 3f;
     private float _jumpHeadDuration = 1f;
-    private float _attackDistanceX = 2f;
+    private float _attackDistanceX = 1.5f;
     private float _attackDistanceY = 1f;
     private Player _target;
     private Coroutine _attackCoroutine;

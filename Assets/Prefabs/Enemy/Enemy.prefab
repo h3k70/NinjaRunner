@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8911812956793371730, guid: d78af930908146044a1bb52e630d6179, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1390861580594791876, guid: d78af930908146044a1bb52e630d6179, type: 3}
     m_RemovedGameObjects: []

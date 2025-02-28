@@ -34,6 +34,8 @@ public class Spawner : MonoBehaviour
         _nextChunk = _chunksQueue.Dequeue();
         _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
         _nextChunk.Activate();
+
+        _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
     }
 
     private void Update()
