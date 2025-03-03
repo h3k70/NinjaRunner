@@ -44,8 +44,13 @@ public class Move : MonoBehaviour
 
         set 
         { 
-            _speed = value; 
+            _speed = value;
+            _splineAnimate.Pause();
             _splineAnimate.MaxSpeed = Speed;
+
+            if (_currentSplineIndex >= 0 && _splineAnimate.Container != null)
+                _splineAnimate.Play();
+
             //_animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
             JumpSpeed = _speed * _multipleForJumpSpeed;
         } 

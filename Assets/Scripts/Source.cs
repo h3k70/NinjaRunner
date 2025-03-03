@@ -5,7 +5,7 @@ public class Source : Resource
 {
     private int _currentLVL = 0;
     private int _maxLVL = 10;
-    private float _multiplierOfMaxValue = 2f;
+    //private float _multiplierOfMaxValue = 2f;
 
     public Action<int> LVLChanged;
 
@@ -20,7 +20,8 @@ public class Source : Resource
             float tempValue = _value - _maxValue;
             _value = 0;
 
-            _maxValue *= _multiplierOfMaxValue;
+            //_maxValue *= _multiplierOfMaxValue;
+            _maxValue *= (-0.1f * _currentLVL + 2);
             MaxValueChanged(_maxValue);
 
             if(_currentLVL + 1 <= _maxLVL)
