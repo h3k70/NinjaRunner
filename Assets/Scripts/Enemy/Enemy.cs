@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
         _particleHead.SetActive(true);
         _particleHead.transform.DOJump(transform.position, _hightForJumpHead, 1, _jumpHeadDuration);
         _particleHead.transform.DORotateQuaternion(Quaternion.Euler(-32, -171, 84), _jumpHeadDuration);
+
+        Die?.Invoke();
     }
 
     private IEnumerator AttackJob()

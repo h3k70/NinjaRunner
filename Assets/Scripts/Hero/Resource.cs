@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Resource
 {
-    private float _maxValue;
-    private float _value;
+    protected float _maxValue;
+    protected float _value;
 
-    public float MaxValue { get => _maxValue; }
-    public float Value { get => _value; }
+    public float MaxValue { get => _maxValue; protected set { _maxValue = value; MaxValueChanged?.Invoke(_maxValue); } }
+    public float Value { get => _value; protected set { _value = value; ValueChanged?.Invoke(_value); } }
 
     public Action<float> ValueChanged;
     public Action<float> MaxValueChanged;
     public Action Ended;
 
-    public void Init(float maxValue)
+    public void Init(float maxValue, float currentValue = 0)
     {
         _maxValue = maxValue;
-        _value = maxValue;
+        _value = currentValue;
 
         MaxValueChanged?.Invoke(maxValue);
         ValueChanged?.Invoke(maxValue);
     }
 
-    public void Take(float value)
+    public virtual void Take(float value)
     {
         _value -= value;
 
@@ -34,7 +34,7 @@ public class Resource
         ValueChanged?.Invoke(_value);
     }
 
-    public void Add(float value)
+    public virtual void Add(float value)
     {
         _value += value;
 

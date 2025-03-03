@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _maxHP = 100;
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _takeDamageAudio;
     [SerializeField] private Move _move;
     [SerializeField] private SwordAttack _baseAttack;
 
@@ -13,10 +14,15 @@ public class Player : MonoBehaviour
     private bool _isSwipeEnded = true;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
+    private int _currentCoins;
 
     public Resource Health { get => _health; }
+    public Move Move { get => _move; }
+    public int Coins { get => _currentCoins; }
 
     public Action Died;
+    public Action DamageTaked;
+    public Action<int> CoinCountChanged;
 
     private void Awake()
     {
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
 
     public void Init(Transform runPoint, Build build = null)
     {
-        _health.Init(_maxHP);
+        _health.Init(_maxHP, _maxHP);
         _move.Init(runPoint, build);
 
         _health.Ended += Die;
@@ -57,7 +63,24 @@ public class Player : MonoBehaviour
     public void TakeDamage(float value)
     {
         _animator.SetTrigger(PlayerAnimHash.JumpStan);
+        _takeDamageAudio.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
+        _takeDamageAudio.Play();
+
         _health.Take(value);
+
+        DamageTaked?.Invoke();
+    }
+
+    public void AddCoin(int value)
+    {
+        _currentCoins += value;
+
+        CoinCountChanged?.Invoke(_currentCoins);
+    }
+
+    public void TrySpendCoin(int value)
+    {
+        CoinCountChanged?.Invoke(_currentCoins);
     }
 
     private void Die()

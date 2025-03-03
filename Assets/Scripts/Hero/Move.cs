@@ -8,12 +8,14 @@ using UnityEngine.Splines;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private float _defaultSpeed = 5;
     [SerializeField] private float _heightOfBuildJump = 2f;
     [SerializeField] private SplineAnimate _splineAnimate;
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _jumpAudio;
     [SerializeField] private TrailEffect[] _trailEffects;
 
+    private float _speed;
     private Transform _runPoint;
     private float _jumpSpeed;
     private Build _currentBuild;
@@ -59,6 +61,7 @@ public class Move : MonoBehaviour
     }
     public Transform RunPoint { get => _runPoint; set => _runPoint = value; }
     public Build CloserBuild { get => _closerBuild; set => _closerBuild = value; }
+    public float DefaultSpeed { get => _defaultSpeed; }
 
     private void Update()
     {
@@ -83,7 +86,7 @@ public class Move : MonoBehaviour
     {
         _runPoint = runPoint;
         _currentBuild = build;
-        Speed = _speed;
+        Speed = _defaultSpeed;
         _splineAnimate.MaxSpeed = Speed;
 
         if (_currentBuild == null)
@@ -124,6 +127,7 @@ public class Move : MonoBehaviour
             if (timeOnSpline == 1)
                 return;
 
+            PlayAudio();
             StartCoroutine(TrailRenderJob());
             StartRunOnSpline(_currentBuild.SplineContainers[tempIndex], timeOnSpline);
 
@@ -135,6 +139,8 @@ public class Move : MonoBehaviour
 
     private void JumpToGround()
     {
+        PlayAudio();
+
         _currentSplineIndex = -1;
         _currentBuild = null;
         _splineAnimate.Pause();
@@ -212,8 +218,15 @@ public class Move : MonoBehaviour
         return closestSline;
     }
 
+    private void PlayAudio()
+    {
+        _jumpAudio.pitch = UnityEngine.Random.Range(0.9f, 1.5f);
+        _jumpAudio.Play();
+    }
+
     private void StartAnimJump(float time, float distance,  Vector3 targetPoint)
     {
+        PlayAudio();
         _animator.SetFloat(PlayerAnimHash.JumpSpeedAnim, _multipleForAnimSpeedJump / time);
         transform.LookAt(new Vector3(targetPoint.x, transform.position.y, targetPoint.z));
 

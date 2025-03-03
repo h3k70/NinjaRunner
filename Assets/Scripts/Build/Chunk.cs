@@ -17,6 +17,7 @@ public class Chunk : MonoBehaviour
     public Transform RunPoint { get => _runPoint; }
     public Player Player { get => _player; }
     public Build[] Builds { get => _builds; set => _builds = value; }
+    public Enemy[] Enemies { get => _enemies; }
 
 #if UNITY_EDITOR
     [ContextMenu("connectBuild")]
