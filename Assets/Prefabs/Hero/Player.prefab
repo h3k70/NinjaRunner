@@ -285,6 +285,37 @@ Transform:
   - {fileID: 2701319472215534071}
   m_Father: {fileID: 5019813433026461165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &980186368862767155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8665595083867340389}
+  m_Layer: 8
+  m_Name: DeadCameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8665595083867340389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980186368862767155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.12415708, y: -0.80394703, z: 0.20808704, w: 0.54309666}
+  m_LocalPosition: {x: 4.5556126, y: 3.7559319, z: 1.7739265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2856192879843876496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022777087565114481
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +427,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 2155931e31d351143ba91c6d7db0fcbf, type: 3}
   m_Resource: {fileID: 8300000, guid: 2155931e31d351143ba91c6d7db0fcbf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.613
+  m_Volume: 0.083
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1124,7 +1155,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 00c301dd4b5903f46bc34d87b33c970b, type: 3}
   m_Resource: {fileID: 8300000, guid: 00c301dd4b5903f46bc34d87b33c970b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.083
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1349,7 +1380,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 1fcd96945d71719419c9397359f5bb49, type: 3}
   m_Resource: {fileID: 8300000, guid: 1fcd96945d71719419c9397359f5bb49, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.083
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1955,7 +1986,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a172af16e820a8c4fae0703bab8d9ba1, type: 3}
   m_Resource: {fileID: 8300000, guid: a172af16e820a8c4fae0703bab8d9ba1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.083
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2658,6 +2689,7 @@ Transform:
   - {fileID: 467961042444422367}
   - {fileID: 4482182970647398838}
   - {fileID: 6786172822243917021}
+  - {fileID: 8665595083867340389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4131507553318728864
@@ -2677,6 +2709,7 @@ MonoBehaviour:
   _takeDamageAudio: {fileID: 3213265420008511550}
   _move: {fileID: 1919679035194740129}
   _baseAttack: {fileID: 7662633398098265902}
+  _dieCameraPoint: {fileID: 8665595083867340389}
 --- !u!114 &1919679035194740129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,7 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79718e7c5c91034db42c1d7cef483fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _defaultSpeed: 5
   _heightOfBuildJump: 2
   _splineAnimate: {fileID: 4004987211861979732}
   _animator: {fileID: 7446263376641728845}

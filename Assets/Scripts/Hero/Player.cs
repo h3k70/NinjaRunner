@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource _takeDamageAudio;
     [SerializeField] private Move _move;
     [SerializeField] private SwordAttack _baseAttack;
+    [SerializeField] private Transform _dieCameraPoint;
 
     private Resource _health = new();
     private PlayerInput _inputs;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public Resource Health { get => _health; }
     public Move Move { get => _move; }
     public int Coins { get => _currentCoins; }
+    public Transform DieCameraPoint { get => _dieCameraPoint; }
 
     public Action Died;
     public Action DamageTaked;
