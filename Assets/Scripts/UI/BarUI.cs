@@ -5,10 +5,10 @@ public class BarUI : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
 
-    private Resource _resource;
+    private IBarReady _resource;
     private float _maxValue;
 
-    public void Init(Resource resource)
+    public void Init(IBarReady resource)
     {
         _resource = resource;
         _maxValue = _resource.MaxValue;

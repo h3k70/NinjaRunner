@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     private float _chunkSizeX = 100;
 
     private Source _source = new();
-    private float _rewardSourcePointForKilling = 15;
+    private float _rewardSourcePointForKilling = 20;
     private float _maxStartSource = 100;
     private float _deleyForSourcePointAdd = 1;
     private float _pointCountForSourceAdd = 5;
@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
         _startChunk.Init(_player);
         _startChunk.Activate();
 
-        _currentChunk = _chunksQueue.Dequeue(); ;
+        _currentChunk = _chunksQueue.Dequeue();
         _currentChunk.transform.position += _startChunk.EndConnectPoint.position - _currentChunk.StartConnectPoint.position;
         _currentChunk.Activate();
 
@@ -60,7 +60,8 @@ public class Spawner : MonoBehaviour
         _HPBar.Init(_player.Health);
         _player.DamageTaked += _bloodFrameUI.StartHitAnim;
 
-        _source.Init(_maxStartSource);
+        _source.Init();
+        OnLVLChanged(_source.CurrentLVL);
         _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
         _source.LVLChanged += OnLVLChanged;
 
