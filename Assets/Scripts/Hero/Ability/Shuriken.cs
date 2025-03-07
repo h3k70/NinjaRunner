@@ -33,7 +33,7 @@ public class Shuriken : Skill
         _move.IsCanPlayJumpAnim = false;
         _slash.Play();
 
-        yield return new WaitForSecondsRealtime(Duration);
+        yield return new WaitForSeconds(Duration);
 
         _move.IsCanPlayJumpAnim = true;
         _slash.Stop();

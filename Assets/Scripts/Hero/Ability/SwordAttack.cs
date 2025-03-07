@@ -36,7 +36,7 @@ public class SwordAttack : Skill
     {
         _trailEffect.duration = Duration;
         _trailEffect.enabled = true;
-        yield return new WaitForSecondsRealtime(Duration);
+        yield return new WaitForSeconds(Duration);
         _swordCollider.enabled = false;
         _trailEffect.enabled = false;
     }

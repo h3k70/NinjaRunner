@@ -38,7 +38,7 @@ public abstract class Skill : MonoBehaviour
 
         CooldownStarted?.Invoke(_cooldownTime);
 
-        yield return new WaitForSecondsRealtime(_cooldownTime);
+        yield return new WaitForSeconds(_cooldownTime);
         _isReady = true;
 
         CooldownEnded?.Invoke();

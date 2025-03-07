@@ -26,6 +26,7 @@ public class Move : MonoBehaviour
     private bool _isCanPlayTrailEffects = true;
     private bool _isRunOnGround = false;
     private Coroutine _runCorounine;
+    private Coroutine _jumpToNextBuildCorounine;
 
     private float _minDistanceForJumpAnim = 0.5f;
     private float _minDistanceForJumpFlipAnim = 5;
@@ -48,7 +49,9 @@ public class Move : MonoBehaviour
         { 
             _speed = value;
             _splineAnimate.Pause();
+            float t = _splineAnimate.NormalizedTime;
             _splineAnimate.MaxSpeed = Speed;
+            _splineAnimate.NormalizedTime = t;
 
             if (_currentSplineIndex >= 0 && _splineAnimate.Container != null)
                 _splineAnimate.Play();
@@ -147,8 +150,14 @@ public class Move : MonoBehaviour
         }
     }
 
-    private void JumpToGround()
+    public void JumpToGround()
     {
+        if (_jumpToNextBuildCorounine != null)
+        {
+            StopCoroutine(_jumpToNextBuildCorounine);
+            _isGrounded = true;
+        }
+
         PlayAudio();
 
         _currentSplineIndex = -1;
@@ -167,7 +176,7 @@ public class Move : MonoBehaviour
 
     private void OnSplineCompleted()
     {
-        StartCoroutine(JumpToNextBuildJob());
+        _jumpToNextBuildCorounine = StartCoroutine(JumpToNextBuildJob());
     }
 
     private void StartRunOnSpline(SplineContainer splineContainer, float timeOnSpline)

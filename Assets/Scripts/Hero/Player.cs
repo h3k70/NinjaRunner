@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SwordAttack _baseAttack;
     [SerializeField] private Shuriken _shurikenAttack;
     [SerializeField] private SmokeScreen _smokeScreen;
+    [SerializeField] private Healing _healing;
     [SerializeField] private Transform _dieCameraPoint;
 
     private Health _health = new();
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
     public Skill BaseAttack { get => _baseAttack; }
     public Skill FirstSkill { get => _shurikenAttack; }
     public Skill SecondSkill { get => _smokeScreen; }
-    public Skill ThirdSkill { get => _baseAttack; }
+    public Skill ThirdSkill { get => _healing; }
     public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
 
     public Action Died;

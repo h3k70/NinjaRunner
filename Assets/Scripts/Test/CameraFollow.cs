@@ -5,11 +5,13 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Player player; // —сылка на трансформ игрока
-    public Transform _targetMoveTransform; // —сылка на трансформ игрока
+    private Transform _targetMoveTransform; // —сылка на трансформ игрока
     public Vector3 offset = new Vector3(0f, 2f, -7f); // —мещение камеры относительно игрока
     public float smoothSpeed = 0.125f; // —корость плавного перемещени€ камеры
     private float y;
     private float z;
+
+    public Transform TargetMoveTransform { get => _targetMoveTransform; set => _targetMoveTransform = value; }
 
     private void Start()
     {
