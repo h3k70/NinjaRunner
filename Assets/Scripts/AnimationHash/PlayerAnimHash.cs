@@ -9,6 +9,8 @@ public static class PlayerAnimHash
     public static readonly int LongJump = Animator.StringToHash("LongJump");
     public static readonly int ShortJump = Animator.StringToHash("ShortJump");
     public static readonly int Die = Animator.StringToHash("Die");
+    public static readonly int ShurikenJump = Animator.StringToHash("Shuriken");
+    public static readonly int ShurikenEnd = Animator.StringToHash("ShurikenEnd");
 
     //float
     public static readonly int JumpSpeedAnim = Animator.StringToHash("JumpSpeedAnim");

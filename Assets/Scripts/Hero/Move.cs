@@ -22,6 +22,8 @@ public class Move : MonoBehaviour
     private Build _closerBuild;
     private int _currentSplineIndex;
     private bool _isGrounded = true;
+    private bool _isCanPlayJumpAnim = true;
+    private bool _isCanPlayTrailEffects = true;
     private bool _isRunOnGround = false;
     private Coroutine _runCorounine;
 
@@ -67,6 +69,9 @@ public class Move : MonoBehaviour
     public Transform RunPoint { get => _runPoint; set => _runPoint = value; }
     public Build CloserBuild { get => _closerBuild; set => _closerBuild = value; }
     public float DefaultSpeed { get => _defaultSpeed; }
+    public bool IsCanPlayTrailEffects { get => _isCanPlayTrailEffects; set => _isCanPlayTrailEffects = value; }
+    public bool IsCanPlayJumpAnim { get => _isCanPlayJumpAnim; set => _isCanPlayJumpAnim = value; }
+    public TrailEffect[] TrailEffects { get => _trailEffects; set => _trailEffects = value; }
 
     private void Update()
     {
@@ -231,6 +236,9 @@ public class Move : MonoBehaviour
 
     private void StartAnimJump(float time, float distance,  Vector3 targetPoint)
     {
+        if (_isCanPlayJumpAnim == false)
+            return;
+
         PlayAudio();
         _animator.SetFloat(PlayerAnimHash.JumpSpeedAnim, _multipleForAnimSpeedJump / time);
         transform.LookAt(new Vector3(targetPoint.x, transform.position.y, targetPoint.z));
@@ -277,10 +285,16 @@ public class Move : MonoBehaviour
 
     private IEnumerator TrailRenderJob()
     {
+        if (_isCanPlayTrailEffects == false)
+            yield break;
+
         foreach (var item in _trailEffects)
             item.color = Color.white;
 
         yield return new WaitForSecondsRealtime(_trailEffects[0].duration);
+
+        if (_isCanPlayTrailEffects == false)
+            yield break;
 
         foreach (var item in _trailEffects)
             item.color = Color.clear;

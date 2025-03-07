@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource _takeDamageAudio;
     [SerializeField] private Move _move;
     [SerializeField] private SwordAttack _baseAttack;
+    [SerializeField] private Shuriken _shurikenAttack;
+    [SerializeField] private SmokeScreen _smokeScreen;
     [SerializeField] private Transform _dieCameraPoint;
 
     private Health _health = new();
     private PlayerInput _inputs;
     private bool _isSwipeEnded = true;
+    private bool _isCanTakeDamage = true;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
     private int _currentCoins;
@@ -21,10 +25,11 @@ public class Player : MonoBehaviour
     public Move Move { get => _move; }
     public int Coins { get => _currentCoins; }
     public Transform DieCameraPoint { get => _dieCameraPoint; }
-    public ISkillble BaseAttack { get => _baseAttack; }
-    public ISkillble FirstSkill { get => _baseAttack; }
-    public ISkillble SecondSkill { get => _baseAttack; }
-    public ISkillble ThirdSkill { get => _baseAttack; }
+    public Skill BaseAttack { get => _baseAttack; }
+    public Skill FirstSkill { get => _shurikenAttack; }
+    public Skill SecondSkill { get => _smokeScreen; }
+    public Skill ThirdSkill { get => _baseAttack; }
+    public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
 
     public Action Died;
     public Action DamageTaked;
@@ -34,7 +39,7 @@ public class Player : MonoBehaviour
     {
         _inputs = new PlayerInput();
 
-        _inputs.Player.Attack.performed += context => _baseAttack.OnAttack();
+        _inputs.Player.Attack.performed += context => OnAttack();
         _inputs.Player.Move.started += context => OnSwipeStarted(context.ReadValue<Vector2>());
         _inputs.Player.Move.performed += context => OnSwipe(context.ReadValue<Vector2>());
         _inputs.Player.Move.canceled += context => OnSwipeEnded(context.ReadValue<Vector2>());
@@ -68,6 +73,9 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float value)
     {
+        if (_isCanTakeDamage == false)
+            return;
+
         _animator.SetTrigger(PlayerAnimHash.JumpStan);
         _takeDamageAudio.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
         _takeDamageAudio.Play();
@@ -91,8 +99,6 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        _health.Ended -= Die;
-
         _inputs.Player.Disable();
         _move.enabled = false;
         _animator.SetTrigger(PlayerAnimHash.Die);
@@ -132,5 +138,11 @@ public class Player : MonoBehaviour
     {
         _swipeStartPosition = Vector2.zero;
         _isSwipeEnded = true;
+    }
+
+    private void OnAttack()
+    {
+        if (EventSystem.current.IsPointerOverGameObject() == false)
+            _baseAttack.Activate();
     }
 }

@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +10,9 @@ public class AbilityUI : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] private Button _button;
 
-    private ISkillble _skill;
+    private Skill _skill;
 
-    public void Init(ISkillble skill)
+    public void Init(Skill skill)
     {
         _skill = skill;
 
@@ -21,6 +20,10 @@ public class AbilityUI : MonoBehaviour
 
         _skill.CooldownStarted += OnCooldownStarted;
         _skill.CooldownEnded += OnCooldownEnded;
+
+        _skill.ConnectButton(_button);
+
+        OnCooldownEnded();
     }
 
     private void OnCooldownEnded()
