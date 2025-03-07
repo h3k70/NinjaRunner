@@ -46,15 +46,18 @@ public class Move : MonoBehaviour
         }
 
         set 
-        { 
+        {
             _speed = value;
             _splineAnimate.Pause();
             float t = _splineAnimate.NormalizedTime;
             _splineAnimate.MaxSpeed = Speed;
-            _splineAnimate.NormalizedTime = t;
 
             if (_currentSplineIndex >= 0 && _splineAnimate.Container != null)
+            {
+                _splineAnimate.NormalizedTime = t;
                 _splineAnimate.Play();
+            }
+                
 
             //_animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
             JumpSpeed = _speed * _multipleForJumpSpeed;
@@ -75,6 +78,7 @@ public class Move : MonoBehaviour
     public bool IsCanPlayTrailEffects { get => _isCanPlayTrailEffects; set => _isCanPlayTrailEffects = value; }
     public bool IsCanPlayJumpAnim { get => _isCanPlayJumpAnim; set => _isCanPlayJumpAnim = value; }
     public TrailEffect[] TrailEffects { get => _trailEffects; set => _trailEffects = value; }
+    public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
 
     private void Update()
     {

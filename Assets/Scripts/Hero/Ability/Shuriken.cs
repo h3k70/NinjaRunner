@@ -10,6 +10,7 @@ public class Shuriken : Skill
     [SerializeField] private Animator _animator;
     [SerializeField] private Move _move;
     [SerializeField] private GameObject _shuriken;
+    [SerializeField] private float _speedBonus = 1.4f;
 
     private float _shurikenScale = 15;
 

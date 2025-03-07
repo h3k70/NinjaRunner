@@ -86,16 +86,16 @@ public class Source : IBarReady
                 return 3000;
                 
             case 7:
-                return 5000;
+                return 4000;
                 
             case 8:
-                return 7000;
+                return 5500;
                 
             case 9:
-                return 10000; //500kills (20)
+                return 8000;
 
             default:
-                return 10000;
+                return 7000;
         }
     }
 }
