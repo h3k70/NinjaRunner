@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class SwordAttack : MonoBehaviour
+public class SwordAttack : MonoBehaviour, ISkillble
 {
+    [SerializeField] private Sprite _icon;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _attackDelay = 1.4f;
     [SerializeField] private Sword _sword;
@@ -11,8 +12,10 @@ public class SwordAttack : MonoBehaviour
     private bool _isReady = true;
     private Coroutine _cooldownCoroutine;
 
-    public Action CooldownEnded;
-    public Action CooldownStarted;
+    public Action CooldownEnded { get; set; }
+    public Action<float> CooldownStarted { get; set; }
+
+    public Sprite Icon => _icon;
 
     public void AnimEventEnableSwordCollider()
     {
@@ -32,7 +35,7 @@ public class SwordAttack : MonoBehaviour
 
     private IEnumerator CooldownAttackJob()
     {
-        CooldownStarted?.Invoke();
+        CooldownStarted?.Invoke(_attackDelay);
 
         yield return new WaitForSecondsRealtime(_attackDelay);
         _isReady = true;

@@ -2937,6 +2937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0839a56f6084f0f4f93027f0991c6430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: e04aee407ad8b2f43ada9ee62a732e76, type: 3}
   _animator: {fileID: 7446263376641728845}
   _attackDelay: 1.4
   _sword: {fileID: 4225325499990952416}

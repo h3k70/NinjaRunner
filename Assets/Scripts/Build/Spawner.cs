@@ -7,9 +7,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<Chunk> _chunksPull;
     [SerializeField] private Chunk _startChunk;
     [SerializeField] private Player _player;
+
     [SerializeField] private BarUI _HPBar;
     [SerializeField] private SourceUI _sourceUI;
     [SerializeField] private BloodFrameUI _bloodFrameUI;
+    [SerializeField] private AbilityUI _baseAbilityUI;
+    [SerializeField] private AbilityUI _firstAbilityUI;
+    [SerializeField] private AbilityUI _secondAbilityUI;
+    [SerializeField] private AbilityUI _thirdAbilityUI;
 
     private Queue<Chunk> _chunksQueue = new();
     private Chunk _currentChunk;
@@ -66,6 +71,11 @@ public class Spawner : MonoBehaviour
         _source.LVLChanged += OnLVLChanged;
 
         _sourceUI.Init(_source, _player);
+
+        _baseAbilityUI.Init(_player.BaseAttack);
+        _firstAbilityUI.Init(_player.FirstSkill);
+        _secondAbilityUI.Init(_player.SecondSkill);
+        _thirdAbilityUI.Init(_player.ThirdSkill);
     }
 
     private void Update()

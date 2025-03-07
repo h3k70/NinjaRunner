@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     public Move Move { get => _move; }
     public int Coins { get => _currentCoins; }
     public Transform DieCameraPoint { get => _dieCameraPoint; }
+    public ISkillble BaseAttack { get => _baseAttack; }
+    public ISkillble FirstSkill { get => _baseAttack; }
+    public ISkillble SecondSkill { get => _baseAttack; }
+    public ISkillble ThirdSkill { get => _baseAttack; }
 
     public Action Died;
     public Action DamageTaked;
