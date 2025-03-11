@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     {
         _isDead = true;
         _inputs.Player.Disable();
-        _move.enabled = false;
+        _move.StopRun();
         _animator.SetTrigger(PlayerAnimHash.Die);
 
         Died?.Invoke();

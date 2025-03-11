@@ -6,33 +6,32 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<Chunk> _chunksPull;
     [SerializeField] private Chunk _startChunk;
-    [SerializeField] private Player _player;
-
-    [SerializeField] private BarUI _HPBar;
-    [SerializeField] private SourceUI _sourceUI;
-    [SerializeField] private BloodFrameUI _bloodFrameUI;
-    [SerializeField] private AbilityUI _baseAbilityUI;
-    [SerializeField] private AbilityUI _firstAbilityUI;
-    [SerializeField] private AbilityUI _secondAbilityUI;
-    [SerializeField] private AbilityUI _thirdAbilityUI;
 
     private Queue<Chunk> _chunksQueue = new();
     private Chunk _currentChunk;
     private Chunk _nextChunk;
     private float _chunkSizeZ = 40;
     private float _chunkSizeX = 100;
-
-    private Source _source = new();
+    private Player _player;
+    private Source _source;
     private float _rewardSourcePointForKilling = 20;
     private float _deleyForSourcePointAdd = 1;
     private float _pointCountForSourceAdd = 5;
     private Coroutine _sourcePointAddCoroutine;
-
+    private Coroutine _swapnChunkCoroutine;
     private int _rewardSourceCoinForKilling = 10;
 
-    private void Start()
+    public Source Source { get => _source; }
+    public Chunk StartChunk { get => _startChunk; }
+
+    public void Init(Player player)
     {
-        _player.Init(_startChunk.RunPoint);
+        _player = player;
+        _source = new();
+
+        _source.Init();
+        OnLVLChanged(_source.CurrentLVL);
+        _source.LVLChanged += OnLVLChanged;
 
         foreach (var item in _chunksPull)
         {
@@ -46,6 +45,12 @@ public class Spawner : MonoBehaviour
                 enemy.Die += OnEnemyDie;
             }
         }
+    }
+
+    public void StartSpawnChunks()
+    {
+        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
+
         GenerateQueueOfChunks();
 
         _startChunk.Init(_player, _source);
@@ -60,52 +65,8 @@ public class Spawner : MonoBehaviour
         _nextChunk.Activate();
 
         _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
-        //-----------------------------------------------------------------------------------
-        _HPBar.Init(_player.Health);
-        _player.DamageTaked += _bloodFrameUI.StartHitAnim;
 
-        _source.Init();
-        OnLVLChanged(_source.CurrentLVL);
-        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
-        _source.LVLChanged += OnLVLChanged;
-
-        _sourceUI.Init(_source, _player);
-
-        _baseAbilityUI.Init(_player.BaseAttack);
-        _firstAbilityUI.Init(_player.FirstSkill);
-        _secondAbilityUI.Init(_player.SecondSkill);
-        _thirdAbilityUI.Init(_player.ThirdSkill);
-    }
-
-    private void Update()
-    {
-        if(_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
-        {
-            _chunksPull.Add(_currentChunk);
-            _currentChunk.Deactivate();
-
-            _currentChunk = _nextChunk;
-
-            if (_chunksQueue.TryDequeue(out Chunk newChunk))
-            {
-                _nextChunk = newChunk;
-                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.Activate();
-            }
-            else
-            {
-                GenerateQueueOfChunks();
-                _nextChunk = _chunksQueue.Dequeue();
-                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.Activate();
-            }
-            _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
-        }
-    }
-
-    public void Init()
-    {
-
+        _swapnChunkCoroutine = StartCoroutine(SwapnChunkJob());
     }
 
     private void GenerateQueueOfChunks()
@@ -141,6 +102,33 @@ public class Spawner : MonoBehaviour
     {
         _source.Add(_rewardSourcePointForKilling);
         _player.AddCoin((int)(_rewardSourceCoinForKilling * (_source.CurrentLVL * 0.1f + 1)));
+    }
+
+    private IEnumerator SwapnChunkJob()
+    {
+        if (_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
+        {
+            _chunksPull.Add(_currentChunk);
+            _currentChunk.Deactivate();
+
+            _currentChunk = _nextChunk;
+
+            if (_chunksQueue.TryDequeue(out Chunk newChunk))
+            {
+                _nextChunk = newChunk;
+                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                _nextChunk.Activate();
+            }
+            else
+            {
+                GenerateQueueOfChunks();
+                _nextChunk = _chunksQueue.Dequeue();
+                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                _nextChunk.Activate();
+            }
+            _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
+        }
+        yield return null;
     }
 
     private IEnumerator AddSourcePointJob()

@@ -55,7 +55,7 @@ public class Source : IValueble
             Add(tempValue);
             return;
         }
-        ValueChanged(_value);
+        ValueChanged?.Invoke(_value);
     }
 
     private float GetValueForNextLVL()

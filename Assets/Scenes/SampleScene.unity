@@ -2308,6 +2308,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211bbfa29972c934a9bca7814c1e7245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1656144581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656144583}
+  - component: {fileID: 1656144582}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1656144582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656144581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b8cf8230e24cb4d86d42e87850a38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 1837115491}
+  _player: {fileID: 1388906456}
+  _HPBar: {fileID: 5030924950892063134}
+  _sourceUI: {fileID: 102126811}
+  _bloodFrameUI: {fileID: 2014651000}
+  _baseAbilityUI: {fileID: 1224875356}
+  _firstAbilityUI: {fileID: 1652290168}
+  _secondAbilityUI: {fileID: 1689162619}
+  _thirdAbilityUI: {fileID: 1214891954}
+--- !u!4 &1656144583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656144581}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5005.8003, y: 3.0146687, z: -6.5278525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1689162615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2535,14 +2588,6 @@ MonoBehaviour:
   - {fileID: 6610624986573692680}
   - {fileID: 1182142804}
   _startChunk: {fileID: 2130516949}
-  _player: {fileID: 1388906456}
-  _HPBar: {fileID: 5030924950892063134}
-  _sourceUI: {fileID: 102126811}
-  _bloodFrameUI: {fileID: 2014651000}
-  _baseAbilityUI: {fileID: 1224875356}
-  _firstAbilityUI: {fileID: 1652290168}
-  _secondAbilityUI: {fileID: 1689162619}
-  _thirdAbilityUI: {fileID: 1214891954}
 --- !u!4 &1837115492
 Transform:
   m_ObjectHideFlags: 0
@@ -3488,6 +3533,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1656144583}
+  - {fileID: 238360707}
   - {fileID: 330585546}
   - {fileID: 1565542193}
   - {fileID: 1837115492}
@@ -3498,4 +3545,3 @@ SceneRoots:
   - {fileID: 2836222223483032587}
   - {fileID: 6610624986573692679}
   - {fileID: 1182142803}
-  - {fileID: 238360707}

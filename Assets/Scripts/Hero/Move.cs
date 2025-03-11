@@ -88,27 +88,25 @@ public class Move : MonoBehaviour
         MoveOnGround();
     }
 
-    private void OnEnable()
-    {
-        if(_splineAnimate.Container != null)
-            _splineAnimate.Play();
-    }
-
-    private void OnDisable()
-    {
-        _splineAnimate.Pause();
-    }
-
     public void Init(Transform runPoint, Build build = null)
     {
         _runPoint = runPoint;
         _currentBuild = build;
         Speed = _defaultSpeed;
         _splineAnimate.MaxSpeed = Speed;
+    }
+
+    public void StartRun()
+    {
+        this.enabled = true;
 
         if (_currentBuild == null)
         {
             JumpToGround();
+        }
+        else if (_splineAnimate.Container != null)
+        {
+            _splineAnimate.Play();
         }
         else
         {
@@ -117,6 +115,12 @@ public class Move : MonoBehaviour
             _splineAnimate.Completed += OnSplineCompleted;
             _splineAnimate.Play();
         }
+    }
+
+    public void StopRun()
+    {
+        _splineAnimate.Pause();
+        this.enabled = false;
     }
 
     public void JumpToSpline(float dir)
