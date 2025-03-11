@@ -106,29 +106,32 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SwapnChunkJob()
     {
-        if (_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
+        while (true)
         {
-            _chunksPull.Add(_currentChunk);
-            _currentChunk.Deactivate();
-
-            _currentChunk = _nextChunk;
-
-            if (_chunksQueue.TryDequeue(out Chunk newChunk))
+            if (_player.transform.position.x - _nextChunk.RunPoint.position.x >= 0)
             {
-                _nextChunk = newChunk;
-                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.Activate();
+                _chunksPull.Add(_currentChunk);
+                _currentChunk.Deactivate();
+
+                _currentChunk = _nextChunk;
+
+                if (_chunksQueue.TryDequeue(out Chunk newChunk))
+                {
+                    _nextChunk = newChunk;
+                    _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                    _nextChunk.Activate();
+                }
+                else
+                {
+                    GenerateQueueOfChunks();
+                    _nextChunk = _chunksQueue.Dequeue();
+                    _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
+                    _nextChunk.Activate();
+                }
+                _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
             }
-            else
-            {
-                GenerateQueueOfChunks();
-                _nextChunk = _chunksQueue.Dequeue();
-                _nextChunk.transform.position += _currentChunk.EndConnectPoint.position - _nextChunk.StartConnectPoint.position;
-                _nextChunk.Activate();
-            }
-            _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
+            yield return null;
         }
-        yield return null;
     }
 
     private IEnumerator AddSourcePointJob()

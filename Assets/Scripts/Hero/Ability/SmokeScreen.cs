@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SmokeScreen : Skill
 {
     [SerializeField] private AudioSource _slash;
+    [SerializeField] private AudioSource _smokeAudio;
     [SerializeField] private Move _move;
     [SerializeField] private ParticleSystem _smoke;
     [SerializeField] private Image _hitImage;
@@ -55,6 +56,7 @@ public class SmokeScreen : Skill
         _tempPosition = Player.transform.position;
         _camera.TargetMoveTransform = _camera.transform;
         _smoke.Play();
+        _smokeAudio.Play();
 
         foreach (var item in _enemiesColliders)
         {
