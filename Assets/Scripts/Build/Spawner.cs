@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
 
     private Source _source = new();
     private float _rewardSourcePointForKilling = 20;
-    private float _maxStartSource = 100;
     private float _deleyForSourcePointAdd = 1;
     private float _pointCountForSourceAdd = 5;
     private Coroutine _sourcePointAddCoroutine;
@@ -37,7 +36,7 @@ public class Spawner : MonoBehaviour
 
         foreach (var item in _chunksPull)
         {
-            item.Init(_player);
+            item.Init(_player, _source);
         }
 
         foreach (Chunk chunk in _chunksPull)
@@ -49,7 +48,7 @@ public class Spawner : MonoBehaviour
         }
         GenerateQueueOfChunks();
 
-        _startChunk.Init(_player);
+        _startChunk.Init(_player, _source);
         _startChunk.Activate();
 
         _currentChunk = _chunksQueue.Dequeue();
@@ -102,6 +101,11 @@ public class Spawner : MonoBehaviour
             }
             _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
         }
+    }
+
+    public void Init()
+    {
+
     }
 
     private void GenerateQueueOfChunks()

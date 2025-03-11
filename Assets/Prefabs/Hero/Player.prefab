@@ -765,7 +765,7 @@ MonoBehaviour:
   target: {fileID: 2240074031699562520}
   _active: 1
   executeInEditMode: 0
-  ignoreFrames: 3
+  ignoreFrames: 0
   duration: 0.2
   continuous: 0
   smooth: 0
@@ -2841,6 +2841,11 @@ MonoBehaviour:
   _animator: {fileID: 7446263376641728845}
   _takeDamageAudio: {fileID: 3213265420008511550}
   _move: {fileID: 1919679035194740129}
+  _allSkills:
+  - {fileID: 7662633398098265902}
+  - {fileID: 1233894761864705120}
+  - {fileID: 2116840674416616888}
+  - {fileID: 757038701802138838}
   _baseAttack: {fileID: 7662633398098265902}
   _shurikenAttack: {fileID: 2116840674416616888}
   _smokeScreen: {fileID: 1233894761864705120}
@@ -3077,8 +3082,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: e04aee407ad8b2f43ada9ee62a732e76, type: 3}
-  _cooldownTime: 1.7
-  _duration: 0.2
   _animator: {fileID: 7446263376641728845}
   _trailEffect: {fileID: 1151967192142505864}
   _audioSlash: {fileID: 8191607402197828818}
@@ -3097,8 +3100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 77f096a780568cd459125b0077e97a8a, type: 3}
-  _cooldownTime: 10
-  _duration: 5
   _slash: {fileID: 1141318932450475122}
   _animator: {fileID: 7446263376641728845}
   _move: {fileID: 1919679035194740129}
@@ -3116,8 +3117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 2c31b7f977102584f9baa45054ff4be3, type: 3}
-  _cooldownTime: 10
-  _duration: 1
+  _slash: {fileID: 4368085076063177561}
   _player: {fileID: 4131507553318728864}
   _move: {fileID: 1919679035194740129}
   _smoke: {fileID: 7021518786275042922}
@@ -3126,7 +3126,6 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 128
-  _radius: 15
 --- !u!114 &757038701802138838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,8 +3139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 90bbc2605d6b196469c4ca85922289fe, type: 3}
-  _cooldownTime: 20
-  _duration: 0
   _player: {fileID: 4131507553318728864}
   _particle: {fileID: 3529285466979116193}
 --- !u!114 &281657672770456351
@@ -3161,7 +3158,7 @@ MonoBehaviour:
   target: {fileID: 7957342056561641187}
   _active: 1
   executeInEditMode: 0
-  ignoreFrames: 3
+  ignoreFrames: 0
   duration: 0.2
   continuous: 0
   smooth: 0
@@ -3627,7 +3624,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8781554770226093413}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4251,7 +4248,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 10
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4456,7 +4453,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -8946,7 +8943,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 1f0fcbe065d600343b874b191355b475, type: 3}
       propertyPath: m_Name
-      value: VFX_PoisonousClouds
+      value: SmokeFX
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f0fcbe065d600343b874b191355b475, type: 3}
       propertyPath: m_LocalPosition.x

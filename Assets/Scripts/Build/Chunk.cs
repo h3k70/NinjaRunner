@@ -10,7 +10,10 @@ public class Chunk : MonoBehaviour
     [SerializeField] private Transform _endConnectPoint;
 
     private Player _player;
-    private float _activationChance = 50f;
+    private Source _source;
+    private float _activationChance;
+    private float _defaultActivationChance = 50f;
+    private float _addActivationChance = 1.5f;
 
     public Transform StartConnectPoint { get => _startConnectPoint; }
     public Transform EndConnectPoint { get => _endConnectPoint; }
@@ -30,9 +33,14 @@ public class Chunk : MonoBehaviour
     }
 #endif
 
-    public void Init(Player player)
+    public void Init(Player player, Source source)
     {
+        _activationChance = _defaultActivationChance;
+
         _player = player;
+        _source = source;
+
+        _source.LVLChanged += OnLVLChanged;
     }
 
     public void Activate()
@@ -49,6 +57,11 @@ public class Chunk : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+    }
+
+    private void OnLVLChanged(int lvl)
+    {
+        _activationChance += _addActivationChance;
     }
 
     private void ResetEnemy()

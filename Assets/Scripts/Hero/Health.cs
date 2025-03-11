@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class Health : IBarReady
+public class Health : IValueble
 {
     protected float _maxValue;
     protected float _value;
 
-    public float MaxValue { get => _maxValue; set { _maxValue = value; MaxValueChanged?.Invoke(_maxValue); } }
-    public float Value { get => _value; set { _value = value; ValueChanged?.Invoke(_value); } }
+    public float MaxValue { get => _maxValue; }
+    public float Value { get => _value; }
 
     public Action<float> ValueChanged { get; set; }
     public Action<float> MaxValueChanged { get; set; }

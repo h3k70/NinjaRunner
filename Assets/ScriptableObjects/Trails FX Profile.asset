@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 0}
   active: 1
-  ignoreFrames: 3
+  ignoreFrames: 0
   duration: 0.2
   continuous: 0
   smooth: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorSequence: 0
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 1, g: 1, b: 1, a: 0}
   colorCycleDuration: 3
   pingPongSpeed: 1
   colorStartPalette:

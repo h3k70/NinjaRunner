@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioSource _takeDamageAudio;
     [SerializeField] private Move _move;
+    [SerializeField] private Skill[] _allSkills;
     [SerializeField] private SwordAttack _baseAttack;
     [SerializeField] private Shuriken _shurikenAttack;
     [SerializeField] private SmokeScreen _smokeScreen;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private PlayerInput _inputs;
     private bool _isSwipeEnded = true;
     private bool _isCanTakeDamage = true;
+    private bool _isDead = false;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
     private int _currentCoins;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     public Skill SecondSkill { get => _smokeScreen; }
     public Skill ThirdSkill { get => _healing; }
     public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     public Action Died;
     public Action DamageTaked;
@@ -70,6 +73,11 @@ public class Player : MonoBehaviour
         _move.Init(runPoint, build);
 
         _health.Ended += Die;
+
+        foreach (var item in _allSkills)
+        {
+            item.Init(this);
+        }
     }
 
     public void TakeDamage(float value)
@@ -100,6 +108,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        _isDead = true;
         _inputs.Player.Disable();
         _move.enabled = false;
         _animator.SetTrigger(PlayerAnimHash.Die);
@@ -144,6 +153,6 @@ public class Player : MonoBehaviour
     private void OnAttack()
     {
         if (EventSystem.current.IsPointerOverGameObject() == false)
-            _baseAttack.Activate();
+            _baseAttack.Cast();
     }
 }

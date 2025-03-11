@@ -17,8 +17,10 @@ public class Enemy : MonoBehaviour
     private float _attackDistanceY = 1f;
     private Player _target;
     private Coroutine _attackCoroutine;
+    private bool _isDead; 
 
     public float Damage { get => _damage; set => _damage = value; }
+    public bool IsDead { get => _isDead; }
 
     public Action Die;
 
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour
     public void Activate()
     {
         gameObject.SetActive(true);
+        _isDead = false;
 
         _animator.SetTrigger(EnemyAnimHash.Reset);
         _attack.IsCanAttack = true;
@@ -46,6 +49,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage()
     {
+        if (_isDead)
+            return;
+
         StopCoroutine(_attackCoroutine);
         _attack.IsCanAttack = false;
         _animator.SetTrigger(EnemyAnimHash.Dead);
@@ -55,6 +61,7 @@ public class Enemy : MonoBehaviour
         _particleHead.transform.DOJump(transform.position, _hightForJumpHead, 1, _jumpHeadDuration);
         _particleHead.transform.DORotateQuaternion(Quaternion.Euler(-32, -171, 84), _jumpHeadDuration);
 
+        _isDead = true;
         Die?.Invoke();
     }
 
