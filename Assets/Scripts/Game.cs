@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Player _player;
+    [SerializeField] private CameraFollow _cameraFollow;
 
     [SerializeField] private BarUI _HPBar;
     [SerializeField] private SourceUI _sourceUI;
@@ -13,12 +15,15 @@ public class Game : MonoBehaviour
     [SerializeField] private AbilityUI _secondAbilityUI;
     [SerializeField] private AbilityUI _thirdAbilityUI;
 
+    public Player Player { get => _player; }
+
     private void Start()
     {
         _player.Init(_spawner.StartChunk.RunPoint);
         _spawner.Init(_player);
 
         _player.DamageTaked += _bloodFrameUI.StartHitAnim;
+        _player.Died += OnPlayerDied;
 
         _HPBar.Init(_player.Health);
         _sourceUI.Init(_spawner.Source, _player);
@@ -28,10 +33,15 @@ public class Game : MonoBehaviour
         _thirdAbilityUI.Init(_player.ThirdSkill);
     }
 
-    [ContextMenu("StartRun")]
     public void StartRun()
     {
         _spawner.StartSpawnChunks();
         _player.Move.StartRun();
+        _cameraFollow.TargetMoveTransform = null;
+    }
+
+    private void OnPlayerDied()
+    {
+        _cameraFollow.TargetMoveTransform = _player.DieCameraPoint;
     }
 }

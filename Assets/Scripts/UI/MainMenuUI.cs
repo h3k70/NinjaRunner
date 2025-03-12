@@ -1,16 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _gradeButton;
+    [SerializeField] private Button _leadersButton;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Button StartButton { get => _startButton; }
+    public Button GradeButton { get => _gradeButton; }
+    public Button LeadersButton { get => _leadersButton; }
 }

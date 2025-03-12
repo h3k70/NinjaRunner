@@ -8,23 +8,10 @@ public class CameraFollow : MonoBehaviour
     private Transform _targetMoveTransform; // Ссылка на трансформ игрока
     public Vector3 offset = new Vector3(0f, 2f, -7f); // Смещение камеры относительно игрока
     public float smoothSpeed = 0.125f; // Скорость плавного перемещения камеры
-    private float y;
-    private float z;
+    public float y;
+    public float z;
 
     public Transform TargetMoveTransform { get => _targetMoveTransform; set => _targetMoveTransform = value; }
-
-    private void Start()
-    {
-        y = transform.position.y;
-        z = transform.position.z;
-
-        player.Died += OnDied;
-    }
-
-    private void OnDied()
-    {
-        _targetMoveTransform = player.DieCameraPoint;
-    }
 
     void LateUpdate()
     {
