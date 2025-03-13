@@ -41,6 +41,8 @@ public class Game : MonoBehaviour
         _firstAbilityUI.Init(_player.FirstSkill);
         _secondAbilityUI.Init(_player.SecondSkill);
         _thirdAbilityUI.Init(_player.ThirdSkill);
+
+        _cameraFollow.TargetMoveTransform = _player.NearCameraPoint;
     }
 
     public void StartRun()
@@ -50,6 +52,7 @@ public class Game : MonoBehaviour
 
         _spawner.StartSpawnChunks();
         _player.Move.StartRun();
+        _player.IsCanCast = true;
         _cameraFollow.TargetMoveTransform = null;
     }
 
@@ -58,6 +61,11 @@ public class Game : MonoBehaviour
         _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
         _player.Revive();
         _cameraFollow.TargetMoveTransform = null;
+    }
+
+    public void GoHome()
+    {
+        _player.IsCanCast = false;
     }
 
     private void OnPlayerDied()

@@ -47,7 +47,7 @@ public abstract class Skill : MonoBehaviour, IGradable
 
     public virtual void Cast()
     {
-        if (IsReady == false || _player.IsDead)
+        if (IsReady == false || _player.IsDead || _player.IsCanCast == false)
             return;
 
         StartCooldown();

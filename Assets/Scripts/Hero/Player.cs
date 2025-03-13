@@ -8,21 +8,25 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioSource _takeDamageAudio;
     [SerializeField] private Move _move;
+    [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private Skill[] _allSkills;
     [SerializeField] private SwordAttack _baseAttack;
     [SerializeField] private Shuriken _shurikenAttack;
     [SerializeField] private SmokeScreen _smokeScreen;
     [SerializeField] private Healing _healing;
     [SerializeField] private Transform _dieCameraPoint;
+    [SerializeField] private Transform _nearCameraPoint;
 
     private Health _health = new();
     private PlayerInput _inputs;
     private bool _isSwipeEnded = true;
+    private bool _isCanCast = false;
     private bool _isCanTakeDamage = true;
     private bool _isDead = false;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
     private float _currentCoins;
+    private float _safeReviveRadius;
 
     public Health Health { get => _health; }
     public Move Move { get => _move; }
@@ -35,6 +39,8 @@ public class Player : MonoBehaviour
     public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
     public bool IsDead { get => _isDead; set => _isDead = value; }
     public Skill[] AllSkills { get => _allSkills; }
+    public bool IsCanCast { get => _isCanCast; set => _isCanCast = value; }
+    public Transform NearCameraPoint { get => _nearCameraPoint; }
 
     public Action Died;
     public Action Revived;
@@ -120,6 +126,12 @@ public class Player : MonoBehaviour
         _animator.SetTrigger(PlayerAnimHash.Revive);
         _inputs.Player.Enable();
         _health.Add(_health.MaxValue);
+        _move.StartRun();
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _safeReviveRadius, _enemyLayer);
+
+        foreach (var item in colliders)
+            item.GetComponent<Enemy>().TakeDamage();
 
         Revived?.Invoke();
     }
