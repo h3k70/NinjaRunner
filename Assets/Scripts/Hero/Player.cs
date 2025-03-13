@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
         _isDead = false;
         _animator.SetTrigger(PlayerAnimHash.Revive);
         _inputs.Player.Enable();
-        _move.StartRun();
+        _health.Add(_health.MaxValue);
 
         Revived?.Invoke();
     }

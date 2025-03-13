@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     public Player player; // Ссылка на трансформ игрока
     private Transform _targetMoveTransform; // Ссылка на трансформ игрока
     public Vector3 offset = new Vector3(0f, 2f, -7f); // Смещение камеры относительно игрока
+    public Quaternion rotate; // Смещение камеры относительно игрока
     public float smoothSpeed = 0.125f; // Скорость плавного перемещения камеры
     public float y;
     public float z;
@@ -30,7 +31,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 desiredPosition = new Vector3(player.transform.position.x, y, z) + offset;
 
         // Плавно перемещаем камеру к целевой позиции
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.rotation = rotate;
     }
 }

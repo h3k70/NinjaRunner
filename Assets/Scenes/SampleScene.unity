@@ -811,6 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1388906456}
   offset: {x: 0, y: 0, z: 0}
+  rotate: {x: -0.13637932, y: 0.006118942, z: -0.0010701219, w: -0.99063724}
   smoothSpeed: 0.125
   y: 11.65694
   z: -18.5191
