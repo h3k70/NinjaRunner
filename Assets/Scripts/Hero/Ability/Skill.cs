@@ -14,23 +14,24 @@ public abstract class Skill : MonoBehaviour, IGradable
     private Player _player;
     private int _currentLVL = 0;
     private int _maxLVL;
-    private int _upgradePrice;
-    private int _defaultUpgradePrice = 1000;
+    private float _upgradePrice;
+    private int _defaultUpgradePrice = 2000;
     private float _cooldownTime;
     private float _duration;
     private bool _isReady = true;
 
-    public Sprite Icon => _icon;
+    public Sprite Icon { get => _icon; }
     public bool IsReady { get => _isReady; protected set => _isReady = value; }
     public float Duration { get => _duration; protected set => _duration = value; }
     public int CurrentLVL => _currentLVL;
-    public int UpgradePrice { get => _upgradePrice; protected set => _upgradePrice = value; }
+    public float UpgradePrice { get => _upgradePrice; protected set => _upgradePrice = value; }
     public int MaxLVL { get => _maxLVL; protected set { _maxLVL = value; MaxLVLChanged?.Invoke(_maxLVL); } }
     public float CooldownTime { get => _cooldownTime; protected set => _cooldownTime = value; }
     public Player Player { get => _player; }
 
-    public Action<float> CurrentLVLChanged { get; set; }
-    public Action<float> MaxLVLChanged { get; set; }
+    public Action<int> CurrentLVLChanged { get; set; }
+    public Action<int> MaxLVLChanged { get; set; }
+
     public Action CooldownEnded;
     public Action<float> CooldownStarted;
 
@@ -41,6 +42,7 @@ public abstract class Skill : MonoBehaviour, IGradable
     {
         _player = player;
         UpdateSkillAttributes();
+        CalculateUpgradePrice();
     }
 
     public virtual void Cast()
@@ -81,7 +83,8 @@ public abstract class Skill : MonoBehaviour, IGradable
 
     protected virtual void CalculateUpgradePrice()
     {
-        _upgradePrice = _defaultUpgradePrice * (2 * (_currentLVL + 1));
+        float temp = (float)Math.Pow(2, CurrentLVL + 1);
+        _upgradePrice = _defaultUpgradePrice * temp;
     }
 
     protected void StartCooldown()

@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private MainMenuUI _mainMenuUI;
     [SerializeField] private PauseMenuUI _pauseMenuUI;
     [SerializeField] private DeadMenuUI _deadMenuUI;
-    [SerializeField] private GradeUI _gradeUI;
+    [SerializeField] private GradeMenuUI _gradeMenuUI;
     [SerializeField] private FoldingUI _foldingUI;
     [SerializeField] private float _collapseDuration;
 
@@ -16,6 +16,7 @@ public class MenuUI : MonoBehaviour
     {
         _foldingUI.Init(GetComponent<RectTransform>(), _collapseDuration);
         _pauseMenuUI.Init(_foldingUI);
+        _gradeMenuUI.init(_game.Player.AllSkills, _game.Player);
 
         _game.RunEnded += ShowDeadMenu;
 
@@ -24,14 +25,17 @@ public class MenuUI : MonoBehaviour
         _pauseMenuUI.HomeButton.onClick.AddListener(GoHome);
 
         _mainMenuUI.StartButton.onClick.AddListener(StartRun);
+        _mainMenuUI.GradeButton.onClick.AddListener(ShowGradeMenu);
+
+        _gradeMenuUI.BackButton.onClick.AddListener(ShowMainMenu);
+
+        ShowMainMenu();
     }
 
     private void StartRun()
     {
         _game.StartRun();
-        DisableAllMenu();
-        _pauseMenuUI.gameObject.SetActive(true);
-        _foldingUI.Collapse();
+        EnablePauseMenu();
     }
 
     private void GoHome()
@@ -43,6 +47,20 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex);
     }
 
+    private void ShowMainMenu()
+    {
+        DisableAllMenu();
+        _mainMenuUI.gameObject.SetActive(true);
+        _foldingUI.Expand();
+    }
+
+    private void EnablePauseMenu()
+    {
+        DisableAllMenu();
+        _pauseMenuUI.gameObject.SetActive(true);
+        _foldingUI.Collapse();
+    }
+
     private void ShowDeadMenu()
     {
         DisableAllMenu();
@@ -50,11 +68,18 @@ public class MenuUI : MonoBehaviour
         _foldingUI.Expand();
     }
 
+    private void ShowGradeMenu()
+    {
+        DisableAllMenu();
+        _gradeMenuUI.gameObject.SetActive(true);
+        _foldingUI.Spread(_gradeMenuUI.MenuSize);
+    }
+
     private void DisableAllMenu()
     {
         _mainMenuUI.gameObject.SetActive(false);
         _pauseMenuUI.gameObject.SetActive(false);
         _deadMenuUI.gameObject.SetActive(false);
-        _gradeUI.gameObject.SetActive(false);
+        _gradeMenuUI.gameObject.SetActive(false);
     }
 }

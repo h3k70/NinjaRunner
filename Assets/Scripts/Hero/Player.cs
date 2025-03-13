@@ -22,11 +22,11 @@ public class Player : MonoBehaviour
     private bool _isDead = false;
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
-    private int _currentCoins;
+    private float _currentCoins;
 
     public Health Health { get => _health; }
     public Move Move { get => _move; }
-    public int Coins { get => _currentCoins; }
+    public float Coins { get => _currentCoins; }
     public Transform DieCameraPoint { get => _dieCameraPoint; }
     public Skill BaseAttack { get => _baseAttack; }
     public Skill FirstSkill { get => _shurikenAttack; }
@@ -34,10 +34,11 @@ public class Player : MonoBehaviour
     public Skill ThirdSkill { get => _healing; }
     public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
     public bool IsDead { get => _isDead; set => _isDead = value; }
+    public Skill[] AllSkills { get => _allSkills; }
 
     public Action Died;
     public Action DamageTaked;
-    public Action<int> CoinCountChanged;
+    public Action<float> CoinCountChanged;
 
     private void Awake()
     {
@@ -101,9 +102,15 @@ public class Player : MonoBehaviour
         CoinCountChanged?.Invoke(_currentCoins);
     }
 
-    public void TrySpendCoin(int value)
+    public bool TrySpendCoin(float value)
     {
-        CoinCountChanged?.Invoke(_currentCoins);
+        if (_currentCoins >= value)
+        {
+            _currentCoins -= value;
+            CoinCountChanged?.Invoke(_currentCoins);
+            return true;
+        }
+        return false;
     }
 
     private void Die()

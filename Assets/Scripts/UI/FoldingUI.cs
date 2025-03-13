@@ -13,6 +13,7 @@ public class FoldingUI : MonoBehaviour
     private float _duration;
 
     public Action CollapseEnded;
+    public Action CollapseYEnded;
     public Action ExpandEnded;
 
     public void Init(RectTransform rectTransform, float duration)
@@ -36,9 +37,10 @@ public class FoldingUI : MonoBehaviour
         _object.DOSizeDelta(size, _duration).SetEase(Ease.Linear).SetUpdate(true);
     }
 
-    private void FoldY()
+    public void FoldY()
     {
         _object.DOSizeDelta(new Vector2(_object.sizeDelta.x, _collapsedSize.y), _duration).SetEase(Ease.Linear).SetUpdate(true);
+        CollapseYEnded?.Invoke();
     }
 
     private void FoldX()

@@ -33,7 +33,7 @@ public class SourceUI : MonoBehaviour
         _totalSource.text = Mathf.RoundToInt(value).ToString();
     }
 
-    private void OnCoinCountChanged(int value)
+    private void OnCoinCountChanged(float value)
     {
         _Coin.text = value.ToString();
     }

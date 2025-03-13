@@ -36,6 +36,7 @@ public class SmokeScreen : Skill
     protected override IEnumerator CastLogic()
     {
         _move.StopRun();
+        Vector3 tempPosition = Player.transform.position;
 
         _enemiesColliders = Physics.OverlapSphere(transform.position, _radius, _layer);
 
@@ -86,6 +87,8 @@ public class SmokeScreen : Skill
             item.duration = _tempTrailDuration;
             item.color = Color.clear;
         }
+        Player.transform.position = tempPosition;
+        yield return null;
         _move.StartRun();
     }
 

@@ -9,7 +9,7 @@ public class Healing : Skill
 
     public override void Init(Player player)
     {
-        MaxLVL = 3;
+        MaxLVL = 5;
         Duration = 0;
         base.Init(player);
     }

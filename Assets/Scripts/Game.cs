@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
 
     public Action RunEnded;
 
-    private void Start()
+    private void Awake()
     {
         _player.Init(_spawner.StartChunk.RunPoint);
         _source.Init();
