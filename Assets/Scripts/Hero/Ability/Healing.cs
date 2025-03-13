@@ -26,19 +26,34 @@ public class Healing : Skill
     {
         switch (CurrentLVL)
         {
+            case 0:
+                CooldownTime = 120f;
+                _count = 15;
+                break;
+
             case 1:
-                CooldownTime = 100f;
+                CooldownTime = 90f;
                 _count = 20;
                 break;
 
             case 2:
-                CooldownTime = 90f;
-                _count = 25;
+                CooldownTime = 80f;
+                _count = 30;
                 break;
 
             case 3:
                 CooldownTime = 80f;
-                _count = 30;
+                _count = 35;
+                break;
+                
+            case 4:
+                CooldownTime = 80f;
+                _count = 40;
+                break;
+                
+            case 5:
+                CooldownTime = 70f;
+                _count = 40;
                 break;
 
             default:

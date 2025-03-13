@@ -43,28 +43,33 @@ public class Shuriken : Skill
     {
         switch (CurrentLVL)
         {
-            case 1:
+            case 0:
                 CooldownTime = 100f;
                 Duration = 4;
                 break;
 
-            case 2:
+            case 1:
                 CooldownTime = 90f;
                 Duration = 5;
                 break;
 
-            case 3:
+            case 2:
                 CooldownTime = 80f;
                 Duration = 6;
                 break;
 
-            case 4:
+            case 3:
                 CooldownTime = 70f;
                 Duration = 7;
                 break;
 
-            case 5:
+            case 4:
                 CooldownTime = 60f;
+                Duration = 8;
+                break;
+                
+            case 5:
+                CooldownTime = 40f;
                 Duration = 8;
                 break;
 

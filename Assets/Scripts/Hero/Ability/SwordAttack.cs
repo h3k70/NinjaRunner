@@ -45,6 +45,10 @@ public class SwordAttack : Skill
     {
         switch (CurrentLVL)
         {
+            case 0:
+                CooldownTime = 2f;
+                break;
+
             case 1:
                 CooldownTime = 1.8f;
                 break;
@@ -62,7 +66,7 @@ public class SwordAttack : Skill
                 break;
                 
             case 5:
-                CooldownTime = 1.0f;
+                CooldownTime = 0.8f;
                 break;
 
             default:

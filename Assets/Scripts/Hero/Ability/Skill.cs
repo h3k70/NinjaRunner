@@ -12,10 +12,10 @@ public abstract class Skill : MonoBehaviour, IGradable
     protected Coroutine _castCoroutine;
 
     private Player _player;
-    private int _currentLVL = 1;
+    private int _currentLVL = 0;
     private int _maxLVL;
     private int _upgradePrice;
-    private int _defaultUpgradePrice = 2000;
+    private int _defaultUpgradePrice = 1000;
     private float _cooldownTime;
     private float _duration;
     private bool _isReady = true;
@@ -81,10 +81,7 @@ public abstract class Skill : MonoBehaviour, IGradable
 
     protected virtual void CalculateUpgradePrice()
     {
-        if (_currentLVL == 1)
-            _upgradePrice = _defaultUpgradePrice;
-        else
-            _upgradePrice = _defaultUpgradePrice * (2 * (_currentLVL - 1));
+        _upgradePrice = _defaultUpgradePrice * (2 * (_currentLVL + 1));
     }
 
     protected void StartCooldown()

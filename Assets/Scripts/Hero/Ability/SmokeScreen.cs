@@ -93,29 +93,34 @@ public class SmokeScreen : Skill
     {
         switch (CurrentLVL)
         {
-            case 1:
+            case 0:
                 CooldownTime = 60f;
                 _radius = 9;
                 break;
 
-            case 2:
+            case 1:
                 CooldownTime = 55f;
                 _radius = 11;
                 break;
 
-            case 3:
+            case 2:
                 CooldownTime = 50f;
                 _radius = 13;
                 break;
 
-            case 4:
+            case 3:
                 CooldownTime = 45f;
                 _radius = 15;
                 break;
 
-            case 5:
+            case 4:
                 CooldownTime = 40f;
                 _radius = 17;
+                break;
+                
+            case 5:
+                CooldownTime = 20f;
+                _radius = 18;
                 break;
 
             default:
