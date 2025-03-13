@@ -24,12 +24,11 @@ public class Spawner : MonoBehaviour
     public Source Source { get => _source; }
     public Chunk StartChunk { get => _startChunk; }
 
-    public void Init(Player player)
+    public void Init(Player player, Source source)
     {
         _player = player;
-        _source = new();
+        _source = source;
 
-        _source.Init();
         OnLVLChanged(_source.CurrentLVL);
         _source.LVLChanged += OnLVLChanged;
 
@@ -49,8 +48,6 @@ public class Spawner : MonoBehaviour
 
     public void StartSpawnChunks()
     {
-        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
-
         GenerateQueueOfChunks();
 
         _startChunk.Init(_player, _source);
@@ -66,6 +63,7 @@ public class Spawner : MonoBehaviour
 
         _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
 
+        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
         _swapnChunkCoroutine = StartCoroutine(SwapnChunkJob());
     }
 

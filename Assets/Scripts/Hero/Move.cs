@@ -48,18 +48,13 @@ public class Move : MonoBehaviour
         set 
         {
             _speed = value;
-            _splineAnimate.Pause();
             float t = _splineAnimate.NormalizedTime;
             _splineAnimate.MaxSpeed = Speed;
 
             if (_currentSplineIndex >= 0 && _splineAnimate.Container != null)
             {
                 _splineAnimate.NormalizedTime = t;
-                _splineAnimate.Play();
             }
-                
-
-            //_animator.SetFloat(PlayerAnimHash.RunSpeedAnim, _multipleForAnimSpeedRun * _speed);
             JumpSpeed = _speed * _multipleForJumpSpeed;
         } 
     }
@@ -96,6 +91,7 @@ public class Move : MonoBehaviour
         _splineAnimate.MaxSpeed = Speed;
     }
 
+    [ContextMenu("HEsadasPL")]
     public void StartRun()
     {
         this.enabled = true;
@@ -106,7 +102,8 @@ public class Move : MonoBehaviour
         }
         else if (_splineAnimate.Container != null)
         {
-            _splineAnimate.Play();
+            FindNearestPointOnSpline(_splineAnimate.Container, out Vector3 nearestPoint, out float timeOnSpline);
+            StartRunOnSpline(_splineAnimate.Container, timeOnSpline);
         }
         else
         {
@@ -117,8 +114,14 @@ public class Move : MonoBehaviour
         }
     }
 
+    [ContextMenu("HEPL")]
     public void StopRun()
     {
+        if (_jumpToNextBuildCorounine != null)
+        {
+            StopCoroutine(_jumpToNextBuildCorounine);
+            JumpToGround();
+        }
         _splineAnimate.Pause();
         this.enabled = false;
     }
@@ -297,6 +300,7 @@ public class Move : MonoBehaviour
 
         _isGrounded = true;
 
+        _jumpToNextBuildCorounine = null;
         yield return null;
     }
 

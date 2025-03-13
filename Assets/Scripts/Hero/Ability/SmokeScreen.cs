@@ -16,7 +16,6 @@ public class SmokeScreen : Skill
     private float _radius = 15;
     private Color _tempColor;
     private float _tempTrailDuration;
-    private Vector3 _tempPosition;
     private float _trailDuration = 3f;
     private float _deley = 0.3f;
     private Collider[] _enemiesColliders;
@@ -36,6 +35,8 @@ public class SmokeScreen : Skill
 
     protected override IEnumerator CastLogic()
     {
+        _move.StopRun();
+
         _enemiesColliders = Physics.OverlapSphere(transform.position, _radius, _layer);
 
         foreach (var item in _move.TrailEffects)
@@ -52,8 +53,6 @@ public class SmokeScreen : Skill
 
 
         _smoke.transform.parent = null;
-        _move.JumpToGround();
-        _tempPosition = Player.transform.position;
         _camera.TargetMoveTransform = _camera.transform;
         _smoke.Play();
         _smokeAudio.Play();
@@ -72,13 +71,10 @@ public class SmokeScreen : Skill
 
             yield return new WaitForSeconds(_deley);
         }
-        Player.transform.position = _tempPosition;
-
         _smoke.transform.parent = Player.transform;
         _smoke.transform.localPosition = Vector3.zero;
 
         _camera.TargetMoveTransform = null;
-
         _hitImage.DOFade(0, Duration).SetEase(Ease.Linear);
 
         _hitImage.color = _tempColor;
@@ -90,6 +86,7 @@ public class SmokeScreen : Skill
             item.duration = _tempTrailDuration;
             item.color = Color.clear;
         }
+        _move.StartRun();
     }
 
     protected override void UpdateSkillAttributes()

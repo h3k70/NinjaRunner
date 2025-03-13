@@ -31,6 +31,11 @@ public class FoldingUI : MonoBehaviour
         StartCoroutine(ExpandJob());
     }
 
+    public void Spread(Vector2 size)
+    {
+        _object.DOSizeDelta(size, _duration).SetEase(Ease.Linear).SetUpdate(true);
+    }
+
     private void FoldY()
     {
         _object.DOSizeDelta(new Vector2(_object.sizeDelta.x, _collapsedSize.y), _duration).SetEase(Ease.Linear).SetUpdate(true);
