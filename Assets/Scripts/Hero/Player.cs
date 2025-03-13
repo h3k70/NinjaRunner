@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private Vector2 _swipeStartPosition;
     private float _minSwipeDistance = 70;
     private float _currentCoins;
-    private float _safeReviveRadius;
+    private float _safeReviveRadius = 20;
 
     public Health Health { get => _health; }
     public Move Move { get => _move; }
@@ -136,6 +136,15 @@ public class Player : MonoBehaviour
         Revived?.Invoke();
     }
 
+    public void SetHubState()
+    {
+        _isCanCast = false;
+        _animator.SetTrigger(PlayerAnimHash.Idle);
+        _isDead = false;
+        _inputs.Player.Enable();
+        _health.Add(_health.MaxValue);
+        _move.StopRun();
+    }
 
     private void Die()
     {

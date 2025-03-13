@@ -13,6 +13,7 @@ public static class PlayerAnimHash
     public static readonly int ShurikenEnd = Animator.StringToHash("ShurikenEnd");
     public static readonly int StartRun = Animator.StringToHash("StartRun");
     public static readonly int Revive = Animator.StringToHash("Revive");
+    public static readonly int Idle = Animator.StringToHash("Idle");
 
     //float
     public static readonly int JumpSpeedAnim = Animator.StringToHash("JumpSpeedAnim");

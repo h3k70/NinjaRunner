@@ -97,21 +97,21 @@ public class Move : MonoBehaviour
         this.enabled = true;
         _animator.SetTrigger(PlayerAnimHash.StartRun);
 
-        if (_currentBuild == null)
-        {
-            JumpToGround();
-        }
-        else if (_splineAnimate.Container != null)
+        if (_splineAnimate.Container != null && _isRunOnGround == false)
         {
             FindNearestPointOnSpline(_splineAnimate.Container, out Vector3 nearestPoint, out float timeOnSpline);
             StartRunOnSpline(_splineAnimate.Container, timeOnSpline);
         }
-        else
+        else if(_currentBuild != null)
         {
             _currentSplineIndex = 0;
             _splineAnimate.Container = _currentBuild.SplineContainers[0];
             _splineAnimate.Completed += OnSplineCompleted;
             _splineAnimate.Play();
+        }
+        else
+        {
+            JumpToGround();
         }
     }
 

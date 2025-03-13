@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         _player.Init(_spawner.StartChunk.RunPoint);
+        _player.SetHubState();
         _source.Init();
         _spawner.Init(_player, _source);
 
@@ -65,7 +66,7 @@ public class Game : MonoBehaviour
 
     public void GoHome()
     {
-        _player.IsCanCast = false;
+        _player.SetHubState();
     }
 
     private void OnPlayerDied()
