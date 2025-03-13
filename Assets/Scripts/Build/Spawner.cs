@@ -15,9 +15,6 @@ public class Spawner : MonoBehaviour
     private Player _player;
     private Source _source;
     private float _rewardSourcePointForKilling = 20;
-    private float _deleyForSourcePointAdd = 1;
-    private float _pointCountForSourceAdd = 5;
-    private Coroutine _sourcePointAddCoroutine;
     private Coroutine _swapnChunkCoroutine;
     private int _rewardSourceCoinForKilling = 10;
 
@@ -62,8 +59,6 @@ public class Spawner : MonoBehaviour
         _nextChunk.Activate();
 
         _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
-
-        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
         _swapnChunkCoroutine = StartCoroutine(SwapnChunkJob());
     }
 
@@ -129,15 +124,6 @@ public class Spawner : MonoBehaviour
                 _currentChunk.Builds[^1].NextBuild = _nextChunk.Builds[0];
             }
             yield return null;
-        }
-    }
-
-    private IEnumerator AddSourcePointJob()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_deleyForSourcePointAdd);
-            _source.Add(_pointCountForSourceAdd);
         }
     }
 }

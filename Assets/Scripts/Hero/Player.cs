@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public Skill[] AllSkills { get => _allSkills; }
 
     public Action Died;
+    public Action Revived;
     public Action DamageTaked;
     public Action<float> CoinCountChanged;
 
@@ -112,6 +113,17 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+
+    public void Revive()
+    {
+        _isDead = false;
+        _animator.SetTrigger(PlayerAnimHash.Revive);
+        _inputs.Player.Enable();
+        _move.StartRun();
+
+        Revived?.Invoke();
+    }
+
 
     private void Die()
     {

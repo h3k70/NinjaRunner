@@ -16,10 +16,15 @@ public class Game : MonoBehaviour
     [SerializeField] private AbilityUI _secondAbilityUI;
     [SerializeField] private AbilityUI _thirdAbilityUI;
 
+    private float _deleyForSourcePointAdd = 1;
+    private float _pointCountForSourceAdd = 5;
+    private Coroutine _sourcePointAddCoroutine;
     private Source _source = new();
+    private float _bestSource;
     public Player Player { get => _player; }
 
     public Action RunEnded;
+    public Action<float> BestSourceChanged;
 
     private void Awake()
     {
@@ -40,13 +45,30 @@ public class Game : MonoBehaviour
 
     public void StartRun()
     {
+        _source.ResetMe();
+        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
+
         _spawner.StartSpawnChunks();
         _player.Move.StartRun();
         _cameraFollow.TargetMoveTransform = null;
     }
 
+    public void ContinueRun()
+    {
+        _sourcePointAddCoroutine = StartCoroutine(AddSourcePointJob());
+        _player.Revive();
+        _cameraFollow.TargetMoveTransform = null;
+    }
+
     private void OnPlayerDied()
     {
+        StopCoroutine(_sourcePointAddCoroutine);
+
+        if (_source.Total > _bestSource)
+        {
+            _bestSource = _source.Total;
+            BestSourceChanged?.Invoke(_bestSource);
+        }
         StartCoroutine(PlayerDiedJob());
     }
 
@@ -55,5 +77,14 @@ public class Game : MonoBehaviour
         _cameraFollow.TargetMoveTransform = _player.DieCameraPoint;
         yield return new WaitForSecondsRealtime(1.5f);
         RunEnded?.Invoke();
+    }
+
+    private IEnumerator AddSourcePointJob()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_deleyForSourcePointAdd);
+            _source.Add(_pointCountForSourceAdd);
+        }
     }
 }

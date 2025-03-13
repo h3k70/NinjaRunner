@@ -10,7 +10,7 @@ public class GradeMenuUI : MonoBehaviour
     public Button BackButton { get => _backButton; }
     public Vector2 MenuSize { get => _menuSize; }
 
-    public void init(IGradable[] gradables, Player player)
+    public void Init(IGradable[] gradables, Player player)
     {
         for (int i = 0; i < gradables.Length; i++)
         {

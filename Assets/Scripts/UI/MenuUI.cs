@@ -16,11 +16,13 @@ public class MenuUI : MonoBehaviour
     {
         _foldingUI.Init(GetComponent<RectTransform>(), _collapseDuration);
         _pauseMenuUI.Init(_foldingUI);
-        _gradeMenuUI.init(_game.Player.AllSkills, _game.Player);
+        _gradeMenuUI.Init(_game.Player.AllSkills, _game.Player);
+        _deadMenuUI.Init(_game);
 
         _game.RunEnded += ShowDeadMenu;
 
         _deadMenuUI.HomeButton.onClick.AddListener(GoHome);
+        _deadMenuUI.ReviveButton.onClick.AddListener(OnRevive);
 
         _pauseMenuUI.HomeButton.onClick.AddListener(GoHome);
 
@@ -30,6 +32,12 @@ public class MenuUI : MonoBehaviour
         _gradeMenuUI.BackButton.onClick.AddListener(ShowMainMenu);
 
         ShowMainMenu();
+    }
+
+    private void OnRevive()
+    {
+        EnablePauseMenu();
+        _game.ContinueRun();
     }
 
     private void StartRun()

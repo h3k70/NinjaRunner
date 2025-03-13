@@ -95,6 +95,7 @@ public class Move : MonoBehaviour
     public void StartRun()
     {
         this.enabled = true;
+        _animator.SetTrigger(PlayerAnimHash.StartRun);
 
         if (_currentBuild == null)
         {

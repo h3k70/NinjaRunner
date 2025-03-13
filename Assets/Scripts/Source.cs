@@ -15,7 +15,6 @@ public class Source : IValueble
     private int _currentLVL = 0;
     private int _maxLVL = 10;
     private float _totalSource;
-    //private float _multiplierOfMaxValue = 2f;
 
     public Action<int> LVLChanged;
     public Action<float> TotalChanged;
@@ -27,6 +26,13 @@ public class Source : IValueble
     {
         _currentLVL = startLVL;
         _maxValue = GetValueForNextLVL();
+    }
+    
+    public void ResetMe()
+    {
+        _currentLVL = 0;
+        _maxValue = GetValueForNextLVL();
+        _totalSource = 0;
     }
 
     public void Add(float value)
