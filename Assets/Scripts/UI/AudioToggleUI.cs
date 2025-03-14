@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class AudioToggleUI : MonoBehaviour
 {
-    [SerializeField] private Image _image;
     [SerializeField] private Toggle _toggle;
 
     public void SetAudio(bool b)

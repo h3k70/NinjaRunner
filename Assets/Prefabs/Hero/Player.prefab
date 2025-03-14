@@ -3003,6 +3003,9 @@ MonoBehaviour:
   _animator: {fileID: 7446263376641728845}
   _takeDamageAudio: {fileID: 3213265420008511550}
   _move: {fileID: 1919679035194740129}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _allSkills:
   - {fileID: 7662633398098265902}
   - {fileID: 1233894761864705120}

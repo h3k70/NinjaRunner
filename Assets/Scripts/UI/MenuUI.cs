@@ -12,7 +12,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private FoldingUI _foldingUI;
     [SerializeField] private float _collapseDuration;
 
-    private void Start()
+    public void Init()
     {
         _foldingUI.Init(GetComponent<RectTransform>(), _collapseDuration);
         _pauseMenuUI.Init(_foldingUI);
@@ -60,6 +60,7 @@ public class MenuUI : MonoBehaviour
         DisableAllMenu();
         _mainMenuUI.gameObject.SetActive(true);
         _foldingUI.Expand();
+        _game.ShowPlayerNear();
     }
 
     private void EnablePauseMenu()
@@ -81,6 +82,7 @@ public class MenuUI : MonoBehaviour
         DisableAllMenu();
         _gradeMenuUI.gameObject.SetActive(true);
         _foldingUI.Spread(_gradeMenuUI.MenuSize);
+        _game.ShowGradeZone();
     }
 
     private void DisableAllMenu()

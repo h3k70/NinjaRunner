@@ -7,7 +7,9 @@ public class Game : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Player _player;
     [SerializeField] private CameraFollow _cameraFollow;
+    [SerializeField] private Transform _cameraGradeZone;
 
+    [SerializeField] private MenuUI _menuUI;
     [SerializeField] private BarUI _HPBar;
     [SerializeField] private SourceUI _sourceUI;
     [SerializeField] private BloodFrameUI _bloodFrameUI;
@@ -26,7 +28,7 @@ public class Game : MonoBehaviour
     public Action RunEnded;
     public Action<float> BestSourceChanged;
 
-    private void Awake()
+    private void Start()
     {
         _player.Init(_spawner.StartChunk.RunPoint);
         _player.SetHubState();
@@ -44,6 +46,8 @@ public class Game : MonoBehaviour
         _thirdAbilityUI.Init(_player.ThirdSkill);
 
         _cameraFollow.TargetMoveTransform = _player.NearCameraPoint;
+
+        _menuUI.Init();
     }
 
     public void StartRun()
@@ -67,6 +71,16 @@ public class Game : MonoBehaviour
     public void GoHome()
     {
         _player.SetHubState();
+    }
+
+    public void ShowGradeZone()
+    {
+        _cameraFollow.TargetMoveTransform = _cameraGradeZone;
+    }
+    
+    public void ShowPlayerNear()
+    {
+        _cameraFollow.TargetMoveTransform = _player.NearCameraPoint;
     }
 
     private void OnPlayerDied()
