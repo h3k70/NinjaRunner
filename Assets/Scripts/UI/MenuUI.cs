@@ -28,10 +28,16 @@ public class MenuUI : MonoBehaviour
 
         _mainMenuUI.StartButton.onClick.AddListener(StartRun);
         _mainMenuUI.GradeButton.onClick.AddListener(ShowGradeMenu);
+        _mainMenuUI.TutorialButton.onClick.AddListener(StartTutorial);
 
         _gradeMenuUI.BackButton.onClick.AddListener(ShowMainMenu);
 
         ShowMainMenu();
+    }
+
+    private void StartTutorial()
+    {
+        SceneManager.LoadScene(1);
     }
 
     private void OnRevive()

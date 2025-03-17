@@ -41,9 +41,9 @@ public class Game : MonoBehaviour
         _HPBar.Init(_player.Health);
         _sourceUI.Init(_spawner.Source, _player);
         _baseAbilityUI.Init(_player.BaseAttack);
-        _firstAbilityUI.Init(_player.FirstSkill);
-        _secondAbilityUI.Init(_player.SecondSkill);
-        _thirdAbilityUI.Init(_player.ThirdSkill);
+        _firstAbilityUI.Init(_player.ShurikenSkill);
+        _secondAbilityUI.Init(_player.SmokeSkill);
+        _thirdAbilityUI.Init(_player.HealSkill);
 
         _cameraFollow.TargetMoveTransform = _player.NearCameraPoint;
 

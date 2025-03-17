@@ -24,7 +24,7 @@ public class SwordAttack : Skill
 
     public override void Cast()
     {
-        if (IsReady == false)
+        if (IsReady == false || Player.IsDead || Player.IsCanCast == false)
             return;
 
         _animator.SetTrigger(PlayerAnimHash.Slash);

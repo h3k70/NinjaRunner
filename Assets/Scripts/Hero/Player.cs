@@ -33,14 +33,16 @@ public class Player : MonoBehaviour
     public float Coins { get => _currentCoins; }
     public Transform DieCameraPoint { get => _dieCameraPoint; }
     public Skill BaseAttack { get => _baseAttack; }
-    public Skill FirstSkill { get => _shurikenAttack; }
-    public Skill SecondSkill { get => _smokeScreen; }
-    public Skill ThirdSkill { get => _healing; }
+    public Skill ShurikenSkill { get => _shurikenAttack; }
+    public Skill SmokeSkill { get => _smokeScreen; }
+    public Skill HealSkill { get => _healing; }
     public bool IsCanTakeDamage { get => _isCanTakeDamage; set => _isCanTakeDamage = value; }
     public bool IsDead { get => _isDead; set => _isDead = value; }
     public Skill[] AllSkills { get => _allSkills; }
     public bool IsCanCast { get => _isCanCast; set => _isCanCast = value; }
     public Transform NearCameraPoint { get => _nearCameraPoint; }
+    public PlayerInput Inputs { get => _inputs; }
+    public Animator Animator { get => _animator; }
 
     public Action Died;
     public Action Revived;

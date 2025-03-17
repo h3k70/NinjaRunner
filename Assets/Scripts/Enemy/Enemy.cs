@@ -52,7 +52,9 @@ public class Enemy : MonoBehaviour
         if (_isDead)
             return;
 
-        StopCoroutine(_attackCoroutine);
+        if(_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
+
         _attack.IsCanAttack = false;
         _animator.SetTrigger(EnemyAnimHash.Dead);
 
