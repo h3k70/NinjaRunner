@@ -944,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1388906456}
+  TargetMoveTransform: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   rotate: {x: -0.13637932, y: 0.006118942, z: -0.0010701219, w: -0.99063724}
   smoothSpeed: 0.125
@@ -6234,18 +6235,6 @@ PrefabInstance:
     - target: {fileID: 3624659351198145185, guid: 7d69bed61f706a3488e97ac189076983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654268374126321113, guid: 7d69bed61f706a3488e97ac189076983, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.777344
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654268374126321113, guid: 7d69bed61f706a3488e97ac189076983, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.8369508
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654268374126321113, guid: 7d69bed61f706a3488e97ac189076983, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.2356234
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

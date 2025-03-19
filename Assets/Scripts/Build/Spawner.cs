@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
         while (n > 1)
         {
             n--;
-            int k = UnityEngine.Random.Range(0, n + 1);
+            int k = Random.Range(0, n + 1);
             T value = array[k];
             array[k] = array[n];
             array[n] = value;

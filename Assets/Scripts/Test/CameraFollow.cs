@@ -5,25 +5,23 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Player player; // Ссылка на трансформ игрока
-    private Transform _targetMoveTransform; // Ссылка на трансформ игрока
+    public Transform TargetMoveTransform; // Ссылка на трансформ игрока
     public Vector3 offset = new Vector3(0f, 2f, -7f); // Смещение камеры относительно игрока
     public Quaternion rotate; // Смещение камеры относительно игрока
     public float smoothSpeed = 0.125f; // Скорость плавного перемещения камеры
     public float y;
     public float z;
 
-    public Transform TargetMoveTransform { get => _targetMoveTransform; set => _targetMoveTransform = value; }
-
     void LateUpdate()
     {
-        if (_targetMoveTransform != null)
+        if (TargetMoveTransform != null)
         {
 
             // Плавное перемещение камеры к позиции Point
-            transform.position = Vector3.Lerp(transform.position, _targetMoveTransform.position, 1 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, TargetMoveTransform.position, 1 * Time.deltaTime);
 
             // Плавный поворот камеры к повороту Point
-            transform.rotation = Quaternion.Slerp(transform.rotation, _targetMoveTransform.rotation, 1 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, TargetMoveTransform.rotation, 1 * Time.deltaTime);
             return;
         }
 
