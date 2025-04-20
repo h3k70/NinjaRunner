@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 23332610}
   - component: {fileID: 23332612}
   - component: {fileID: 23332611}
+  - component: {fileID: 23332613}
   m_Layer: 5
   m_Name: SurikenTutorText
   m_TagString: Untagged
@@ -323,6 +324,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23332609}
   m_CullTransparentMesh: 1
+--- !u!114 &23332613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23332609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.Shuriken
 --- !u!1001 &30987401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1324,6 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1388906456}
+  TargetMoveTransform: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   rotate: {x: -0.13637932, y: 0.006118942, z: -0.0010701219, w: -0.99063724}
   smoothSpeed: 0.125
@@ -1547,6 +1562,7 @@ GameObject:
   - component: {fileID: 360956534}
   - component: {fileID: 360956536}
   - component: {fileID: 360956535}
+  - component: {fileID: 360956537}
   m_Layer: 5
   m_Name: SlashTutorText
   m_TagString: Untagged
@@ -1675,6 +1691,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360956533}
   m_CullTransparentMesh: 1
+--- !u!114 &360956537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360956533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.Slash
 --- !u!1 &381699694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1831,7 @@ GameObject:
   - component: {fileID: 535511606}
   - component: {fileID: 535511608}
   - component: {fileID: 535511607}
+  - component: {fileID: 535511609}
   m_Layer: 5
   m_Name: SwapDownTutorText
   m_TagString: Untagged
@@ -1930,6 +1960,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535511605}
   m_CullTransparentMesh: 1
+--- !u!114 &535511609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535511605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.SwapDown
 --- !u!114 &551460779 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6631017492985314297, guid: 7322c0dee21af8047b279caa4b261637, type: 3}
@@ -1952,6 +1995,7 @@ GameObject:
   - component: {fileID: 564850641}
   - component: {fileID: 564850643}
   - component: {fileID: 564850642}
+  - component: {fileID: 564850644}
   m_Layer: 5
   m_Name: EndTutorText
   m_TagString: Untagged
@@ -2077,6 +2121,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564850640}
   m_CullTransparentMesh: 1
+--- !u!114 &564850644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564850640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.Ended
 --- !u!1001 &617014876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2893,6 +2950,7 @@ GameObject:
   - component: {fileID: 1038540945}
   - component: {fileID: 1038540947}
   - component: {fileID: 1038540946}
+  - component: {fileID: 1038540948}
   m_Layer: 5
   m_Name: HealTutorText
   m_TagString: Untagged
@@ -3019,6 +3077,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038540944}
   m_CullTransparentMesh: 1
+--- !u!114 &1038540948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038540944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.Heal
 --- !u!1001 &1051666602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3240,6 +3311,7 @@ GameObject:
   - component: {fileID: 1181915983}
   - component: {fileID: 1181915985}
   - component: {fileID: 1181915984}
+  - component: {fileID: 1181915986}
   m_Layer: 5
   m_Name: SwapUpTutorText
   m_TagString: Untagged
@@ -3368,6 +3440,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181915982}
   m_CullTransparentMesh: 1
+--- !u!114 &1181915986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181915982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.SwapUp
 --- !u!1001 &1187601118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3819,6 +3904,7 @@ GameObject:
   - component: {fileID: 1423009191}
   - component: {fileID: 1423009193}
   - component: {fileID: 1423009192}
+  - component: {fileID: 1423009194}
   m_Layer: 5
   m_Name: SmokeTutorText
   m_TagString: Untagged
@@ -3946,6 +4032,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423009190}
   m_CullTransparentMesh: 1
+--- !u!114 &1423009194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423009190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.Smoke
 --- !u!114 &1437904578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5696788765620246697, guid: 28474882242ae5c4f937874cc0b729ff, type: 3}
@@ -4376,6 +4475,7 @@ GameObject:
   - component: {fileID: 1715407443}
   - component: {fileID: 1715407445}
   - component: {fileID: 1715407444}
+  - component: {fileID: 1715407446}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4501,6 +4601,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715407442}
   m_CullTransparentMesh: 1
+--- !u!114 &1715407446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715407442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Tutor.BackInMenu
 --- !u!1 &1722878161
 GameObject:
   m_ObjectHideFlags: 0

@@ -887,6 +887,7 @@ GameObject:
   - component: {fileID: 5235746842964678457}
   - component: {fileID: 5122699077467564638}
   - component: {fileID: 8315238296760506854}
+  - component: {fileID: 1325093895729030580}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -1056,6 +1057,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1325093895729030580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870899478365769632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: Menu.Grade.Buy
 --- !u!1 &6182295718413502321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7528130194538566533
 RectTransform:
   m_ObjectHideFlags: 0
